@@ -61,6 +61,5 @@ public class regcustomer extends JFrame{
         setLayout(new GridLayout(2,1,0,0));
         add(function);
         add(detail);
-        
     }
 }
