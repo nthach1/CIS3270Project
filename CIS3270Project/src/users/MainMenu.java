@@ -84,6 +84,28 @@ public class MainMenu extends JFrame {
             frame.setVisible(true);
             }
         });
+     logcustomer.addActionListener(new ActionListener(){  
+        @Override
+        public void actionPerformed(ActionEvent ev){ 
+            
+            JFrame frame = new logcustomer();
+            frame.setTitle("Customer Account Login");
+            frame.setSize(800, 600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+            }
+        });
+     logad.addActionListener(new ActionListener(){  
+        @Override
+        public void actionPerformed(ActionEvent ev){ 
+            
+            JFrame frame = new logad();
+            frame.setTitle("Administrator Account Login");
+            frame.setSize(800, 600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+            }
+        });
     }
 public static void main(String[] agrs){    
     JFrame frame = new MainMenu();
