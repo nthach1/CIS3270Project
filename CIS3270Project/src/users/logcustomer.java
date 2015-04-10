@@ -31,7 +31,7 @@ public class logcustomer extends JFrame {
         forgotpass.add(new JLabel("Forgot Password?"));
         forgotpass.add(new JLabel("Username"));
         forgotpass.add(new JTextField(20));
-        forgotpass.add(new JLabel("email"));
+        forgotpass.add(new JLabel("Email"));
         forgotpass.add(new JTextField(30));
         forgotpass.add(new JLabel("Security Question"));
         forgotpass.add(new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
