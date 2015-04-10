@@ -48,7 +48,7 @@ public class regcustomer extends JFrame{
         detail.add(new JTextField(20));
         detail.add(new JLabel("Password"));
         detail.add(new JTextField(6));
-        detail.add(new JLabel("email"));
+        detail.add(new JLabel("Email"));
         detail.add(new JTextField(30));
         detail.add(new JLabel("SSN"));
         detail.add(new JTextField(50));
