@@ -44,7 +44,7 @@ public class regad extends JFrame{
         detail.add(new JTextField(30));
         detail.add(new JLabel("Last Name"));
         detail.add(new JTextField(30));
-        detail.add(new JLabel("Address"));
+        detail.add(new JLabel("Email"));
         detail.add(new JTextField(50));
         detail.add(new JLabel("Username"));
         detail.add(new JTextField(20));
