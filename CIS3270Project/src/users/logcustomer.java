@@ -4,6 +4,8 @@ package CIS3270Project;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,6 +26,8 @@ public class logcustomer extends JFrame {
         login.add(ok);
         login.add(cancel);
    final JPanel forgotpass = new JPanel(new GridLayout(13,2,0,0));
+        JButton Main = new JButton("Main");
+        forgotpass.add(Main);
         forgotpass.add(new JLabel("Forgot Password?"));
         forgotpass.add(new JLabel("Username"));
         forgotpass.add(new JTextField(20));
@@ -37,5 +41,16 @@ public class logcustomer extends JFrame {
         setLayout(new GridLayout(2,1,5,5));
         add(login);
         add(forgotpass);
+        
+         Main.addActionListener(new ActionListener(){  
+        @Override
+        public void actionPerformed(ActionEvent ev){
+         JFrame frame = new MainMenu();
+         frame.setTitle("Main Menu");
+         frame.setSize(800, 600);
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+            }
+        });
     }
 }
