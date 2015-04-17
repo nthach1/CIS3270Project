@@ -1,19 +1,16 @@
-
 package CIS3270Project;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class MainMenu extends JFrame {
-    public JButton login = new JButton("Login");
-    public JButton register = new JButton("Register");
-    public JButton Main = new JButton("Main");
-    public JButton logcustomer = new JButton("Customer");
-    public JButton logad= new JButton("Administrator");
-    public JButton regcustomer = new JButton("Customer");
-    public JButton regad = new JButton("Administrator");
+    private final JButton login = new JButton("Login");
+    private final JButton register = new JButton("Register");
+    private final JButton Main = new JButton("Main");
+    private final JButton logcustomer = new JButton("Customer");
+    private final JButton logad= new JButton("Administrator");
+    private final JButton regcustomer = new JButton("Customer");
+    private final JButton regad = new JButton("Administrator");
     
     public MainMenu(){        
     final JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER,2,2));
@@ -35,78 +32,55 @@ public class MainMenu extends JFrame {
     regist.add(Main);
     regist.setVisible(false);
     
-    Main.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){
+    Main.addActionListener((ActionEvent ev) -> {
         panel.setVisible(true);
         log.setVisible(false);
         regist.setVisible(false);
-            }
-        });
+    });
     
-    login.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){
+    login.addActionListener((ActionEvent ev) -> {
         add(log);    
         panel.setVisible(false);
         regist.setVisible(false);
         log.setVisible(true);
-            }
-        });
-    register.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){
+    });
+    register.addActionListener((ActionEvent ev) -> {
         add(regist);    
         panel.setVisible(false);
         log.setVisible(false);
         regist.setVisible(true);
-            }
-        });
-     regcustomer.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){
-            JFrame frame = new regcustomer();
-            frame.setTitle("Customer Account Registration");
-            frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            }
-        });
+    });
+     regcustomer.addActionListener((ActionEvent ev) -> {
+         JFrame frame = new registcustomer();
+         frame.setTitle("Customer Account Registration");
+         frame.setSize(800, 600);
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+    });
     
-     regad.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){ 
-            
-            JFrame frame = new regad();
-            frame.setTitle("Administrator Account Registration");
-            frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            }
-        });
-     logcustomer.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){ 
-            
-            JFrame frame = new logcustomer();
-            frame.setTitle("Customer Account Login");
-            frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            }
-        });
-     logad.addActionListener(new ActionListener(){  
-        @Override
-        public void actionPerformed(ActionEvent ev){ 
-            
-            JFrame frame = new logad();
-            frame.setTitle("Administrator Account Login");
-            frame.setSize(800, 600);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            }
-        });
+     regad.addActionListener((ActionEvent ev) -> {
+         JFrame frame = new registad();
+         frame.setTitle("Administrator Account Registration");
+         frame.setSize(800, 600);
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+    });
+     logcustomer.addActionListener((ActionEvent ev) -> {
+         JFrame frame = new logincustomer();
+         frame.setTitle("Customer Account Login");
+         frame.setSize(800, 600);
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+    });
+     logad.addActionListener((ActionEvent ev) -> {
+         JFrame frame = new loginad();
+         frame.setTitle("Administrator Account Login");
+         frame.setSize(800, 600);
+         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         frame.setVisible(true);
+    });
     }
+    
 public static void main(String[] agrs){    
     JFrame frame = new MainMenu();
     frame.setTitle("Main Menu");
