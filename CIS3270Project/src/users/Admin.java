@@ -5,17 +5,7 @@ package users;
 public class Admin extends Customer implements EditFlight{
 
 	
-	
-	
-	
-	public String getUsername() {
-		
-		
-	}
-	
-	public String getPassword() {
-		
-	}
+
 	
 	@Override
 	public  void createFlight() {

@@ -96,11 +96,4 @@ private String firstName;
 		
 	}
 	
-	public String getUsername() {
-		
-	}
-	
-	public String getPassword() {
-		
-	}
 }
