@@ -20,6 +20,7 @@ private String firstName;
 	
 	private String securityAnswer;
 	
+	//This secret key allows the program to distinguish between administration users and customers
 	private int adminKey;
 	
 	private String getFirstName() {
@@ -92,6 +93,14 @@ private String firstName;
 
 	private void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
+		
+	}
+	
+	private String getUsername() {
+		
+	}
+	
+	private String getPassword() {
 		
 	}
 }
