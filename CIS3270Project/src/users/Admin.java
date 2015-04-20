@@ -8,12 +8,12 @@ public class Admin extends Customer implements EditFlight{
 	
 	
 	
-	private String getUsername() {
+	public String getUsername() {
 		
 		
 	}
 	
-	private String getPassword() {
+	public String getPassword() {
 		
 	}
 	

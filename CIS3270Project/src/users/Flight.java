@@ -1,5 +1,7 @@
 package users;
 
+import java.util.*;
+
 public class Flight {
 
 	private int flightNumber;
@@ -7,6 +9,14 @@ public class Flight {
 	private String origin;
 	
 	private String destination;
+	
+	private Date departureDate;
+	
+	private int hour;
+	
+	private int min;
+	
+	
 	
 	
 	

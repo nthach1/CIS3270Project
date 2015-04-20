@@ -23,84 +23,84 @@ private String firstName;
 	//This secret key allows the program to distinguish between administration users and customers
 	private int adminKey;
 	
-	private String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
-	private void setFirstName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	private String getLastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
-	private void setLastName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	private String getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	private void setAddress(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	private String getZip() {
+	public String getZip() {
 		return zip;
 	}
 
-	private void setZip(String zip) {
+	public void setZip(String zip) {
 		this.zip = zip;
 	}
 
-	private String getState() {
+	public String getState() {
 		return state;
 	}
 
-	private void setState(String state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 
-	private String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	private String getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
 
-	private void setSsn(String ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 
-	private String getSecurityQuestion() {
+	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
 
-	private void setSecurityQuestion(String securityQuestion) {
+	public void setSecurityQuestion(String securityQuestion) {
 		this.securityQuestion = securityQuestion;
 	}
 
-	private String getSecurityAnswer() {
+	public String getSecurityAnswer() {
 		return securityAnswer;
 	}
 
-	private void setSecurityAnswer(String securityAnswer) {
+	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
 		
 	}
 	
-	private String getUsername() {
+	public String getUsername() {
 		
 	}
 	
-	private String getPassword() {
+	public String getPassword() {
 		
 	}
 }
