@@ -16,9 +16,6 @@ public class Flight {
 	
 	private int min;
 	
+	private int passengers;
 	
-	
-	
-	
-
 }

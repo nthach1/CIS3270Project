@@ -5,8 +5,6 @@ package users;
 public class Admin extends Customer implements EditFlight{
 
 	
-
-	
 	@Override
 	public  void createFlight() {
 		

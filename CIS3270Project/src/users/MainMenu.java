@@ -1,4 +1,4 @@
-package CIS3270Project;
+package users;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.*;

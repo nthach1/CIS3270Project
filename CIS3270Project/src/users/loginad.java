@@ -1,4 +1,4 @@
-package CIS3270Project;
+package users;
 
 import java.awt.Component;
 import java.awt.GridLayout;
