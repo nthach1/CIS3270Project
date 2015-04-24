@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -96,17 +97,18 @@ class Save implements ActionListener{
     System.out.println("Driver loaded");
     // Establish a connection
     Connection connection = DriverManager.getConnection
-      ("jdbc:mysql://localhost/CIS3270","root","8731120q");
+      ("jdbc:mysql://localhost/cis3270","root","8731120q");
     System.out.println("Database connected");
     // Create a statement
     Statement statement = connection.createStatement();
     // Execute a statement
-    statement.executeQuery
-      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin"
-        + " value('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
+    statement.executeUpdate
+      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
+        + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
         +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getPassword()+"','"+email.getText()
         +"','"+answer.getText()+"','1')");
     connection.close();
+      JOptionPane.showMessageDialog(null, "You create account successfully!!");
    }
     catch (ClassNotFoundException | SQLException ex){
         }      
