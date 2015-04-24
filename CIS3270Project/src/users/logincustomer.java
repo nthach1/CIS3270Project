@@ -3,13 +3,23 @@ package users;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JTextField; 
+
 
 public class logincustomer extends JFrame {
     private final JTextField username = new JTextField(20);
@@ -54,4 +64,31 @@ public logincustomer(){
             frame.setVisible(true);
      });
     }
+class Password implements ActionListener{
+   
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           Properties props = new Properties();
+           Session session = Session.getDefaultInstance(props, null);
+
+        String msgBody = "your password is";
+
+        try {
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress("qle3@student.gsu.edu"));
+            msg.addRecipient(Message.RecipientType.TO,
+                             new InternetAddress("lequan@student.gpc.edu"));
+            msg.setSubject("Password Retrieved");
+            msg.setText(msgBody);
+            Transport.send(msg);
+
+        } 
+        catch (AddressException ex) {
+            // ...
+        } 
+        catch (MessagingException en) {
+            // ...
+        }
+        }
+    }   
 }
