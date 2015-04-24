@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import javax.swing.*;
-import users.MainMenu;
 
 public class registcustomer extends JFrame{
         private final  JButton save = new JButton("Save");
@@ -27,7 +25,7 @@ public class registcustomer extends JFrame{
         private final JTextField username = new JTextField(30);
         private final JPasswordField password = new JPasswordField(30);
         private final JTextField answer = new JTextField(30);
-        private PreparedStatement statement;
+      
         
         public registcustomer() {  
         final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));  
@@ -89,17 +87,19 @@ class Save implements ActionListener{
     System.out.println("Driver loaded");
     // Establish a connection
     Connection connection = DriverManager.getConnection
-      ("jdbc:mysql://localhost/CIS3270","root","8731120q");
+      ("jdbc:mysql://localhost/cis3270","root","8731120q");
     System.out.println("Database connected");
     // Create a statement
     Statement statement = connection.createStatement();
     // Execute a statement
-    statement.executeQuery
-      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin"
-        + " value('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
+    statement.executeUpdate
+      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
+        + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
         +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getPassword()+"','"+email.getText()
         +"','"+answer.getText()+"','0')");
     connection.close();
+    
+   JOptionPane.showMessageDialog(null, "You create account successfully!!");
    }
     catch (ClassNotFoundException | SQLException ex){
         }      
