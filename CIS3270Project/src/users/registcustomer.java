@@ -95,11 +95,11 @@ class Save implements ActionListener{
     statement.executeUpdate
       ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
         + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
-        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getPassword()+"','"+email.getText()
+        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getText()+"','"+email.getText()
         +"','"+answer.getText()+"','0')");
     connection.close();
     
-   JOptionPane.showMessageDialog(null, "You create account successfully!!");
+   JOptionPane.showMessageDialog(null, "Your account is created successfully!!");
    }
     catch (ClassNotFoundException | SQLException ex){
         }      
