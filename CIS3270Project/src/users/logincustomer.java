@@ -4,18 +4,16 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField; 
@@ -23,12 +21,14 @@ import javax.swing.JTextField;
 
 public class logincustomer extends JFrame {
     private final JTextField username = new JTextField(20);
+    private final JTextField getUsername = new JTextField(20);
     private final Component password = new JPasswordField(30);
     private final JButton ok = new JButton("OK");
     private final JButton cancel = new JButton("Cancel");
     private final JButton Main = new JButton("Main");
     private final JTextField forgotpassword = new JTextField(20);
     private final JButton submit = new JButton("Submit");
+    
     
 public logincustomer(){
      final JPanel login = new JPanel(new GridLayout(13,2,0,0));
@@ -45,7 +45,7 @@ public logincustomer(){
         forgotpass.add(Main);
         forgotpass.add(new JLabel("Forgot Password?"));
         forgotpass.add(new JLabel("Username"));
-        forgotpass.add(new JTextField(20));
+        forgotpass.add(getUsername);
         forgotpass.add(new JLabel("Security Question"));
         forgotpass.add(new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
                                        "What is your first car?","Where were your mother born?"}) );
@@ -56,6 +56,9 @@ public logincustomer(){
         add(login);
         add(forgotpass);   
         
+        Password pass = new Password();
+        submit.addActionListener(pass);
+        
         Main.addActionListener((ActionEvent ev) -> {
             JFrame frame = new MainMenu();
             frame.setTitle("Main Menu");
@@ -65,30 +68,37 @@ public logincustomer(){
      });
     }
 class Password implements ActionListener{
-   
+        private String getPassword;
+        private String getAnswer;
         @Override
         public void actionPerformed(ActionEvent e) {
-           Properties props = new Properties();
-           Session session = Session.getDefaultInstance(props, null);
-
-        String msgBody = "your password is";
-
-        try {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("qle3@student.gsu.edu"));
-            msg.addRecipient(Message.RecipientType.TO,
-                             new InternetAddress("lequan@student.gpc.edu"));
-            msg.setSubject("Password Retrieved");
-            msg.setText(msgBody);
-            Transport.send(msg);
-
-        } 
-        catch (AddressException ex) {
-            // ...
-        } 
-        catch (MessagingException en) {
-            // ...
-        }
-        }
+           try{     
+   Class.forName("com.mysql.jdbc.Driver");
+    System.out.println("Driver loaded");
+    // Establish a connection
+    Connection connection = DriverManager.getConnection
+      ("jdbc:mysql://localhost/cis3270","root","8731120q");
+    System.out.println("Database connected");
+    // Create a statement
+    Statement statement = connection.createStatement();
+    // Execute a statement
+    ResultSet resultSet =statement.executeQuery
+    ("select Answer, Password,Admin from customer where Username ='"+getUsername.getText()+"'");
+    while (resultSet.next()){
+      System.out.println(resultSet.getString(1) +"\t"+
+      resultSet.getString(2)+"\t"+resultSet.getString(3));
+      getPassword = resultSet.getString(2);
+      getAnswer=resultSet.getString(1);
+      }
+    
+    connection.close();
+   }
+    catch (ClassNotFoundException | SQLException ex){
+        }      
+       if (forgotpassword.getText().equals(getAnswer)){
+        JOptionPane.showMessageDialog(null, "Your password is: "+getPassword);
+            }
+    else{JOptionPane.showMessageDialog(null, "Your Answer is wrong, please try again!!!!");}
     }   
+    }
 }
