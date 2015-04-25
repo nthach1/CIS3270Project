@@ -92,6 +92,7 @@ class Save implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    if(adminKey.getText().equals("1234")) {   
     try{     
     Class.forName("com.mysql.jdbc.Driver");
     System.out.println("Driver loaded");
@@ -105,13 +106,16 @@ class Save implements ActionListener{
     statement.executeUpdate
       ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
         + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
-        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getPassword()+"','"+email.getText()
+        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getText()+"','"+email.getText()
         +"','"+answer.getText()+"','1')");
     connection.close();
-      JOptionPane.showMessageDialog(null, "You create account successfully!!");
+      JOptionPane.showMessageDialog(null, "Your account is created successfully!!");
    }
     catch (ClassNotFoundException | SQLException ex){
-        }      
-    }        
-  }
+            }      
+        }  
+    
+    else {JOptionPane.showMessageDialog(null, "Wrong Administration code, try again please");}
+        }
+    }
 }
