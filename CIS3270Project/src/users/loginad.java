@@ -63,7 +63,7 @@ public class loginad extends JFrame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
      });
-        ok.addActionListener((ActionEvent ev) -> {
+     ok.addActionListener((ActionEvent ev) -> {
             JFrame frame = new Customerbook();
             frame.setTitle("Book Flight");
             frame.setSize(800, 600);
@@ -71,7 +71,6 @@ public class loginad extends JFrame {
             frame.setVisible(true);
      });
     }
-    
 
 class Password implements ActionListener{
         private String getPassword;
