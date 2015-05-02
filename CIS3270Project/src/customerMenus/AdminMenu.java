@@ -1,15 +1,9 @@
 package customerMenus;
 
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import classes.Admin;
-import classes.Customer;
-import classes.MainMenu;
 
 	public class AdminMenu extends JFrame{
 	
