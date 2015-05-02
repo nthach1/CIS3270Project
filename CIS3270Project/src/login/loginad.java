@@ -36,7 +36,8 @@ public class loginad extends JFrame {
 	private final JComboBox squestion = new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
             "What is your first car?","Where were your mother born?"});
 
-	public loginad() {
+	public loginad() {// Create Jpanel for constructor
+                //Create JPanel for Login
 		final JPanel login = new JPanel(new GridLayout(13, 2, 0, 0));
 		login.add(new JLabel("Log in"));
 		login.add(new JLabel("Username"));
@@ -46,7 +47,8 @@ public class loginad extends JFrame {
 		((JPasswordField) password).setEchoChar('*');
 		login.add(ok);
 		login.add(cancel);
-
+                
+                //Create Jpanel for retrieved password
 		final JPanel forgotpass = new JPanel(new GridLayout(13, 2, 0, 0));
 		forgotpass.add(Main);
 		forgotpass.add(new JLabel("Forgot Password?"));
@@ -57,13 +59,14 @@ public class loginad extends JFrame {
 		forgotpass.add(new JLabel("Answer"));
 		forgotpass.add(forgotpassword);
 		forgotpass.add(submit);
+                // Set Layout to add two Jpanels
 		setLayout(new GridLayout(2, 1, 5, 5));
 		add(login);
 		add(forgotpass);
 
 		Password pass = new Password();
 		submit.addActionListener(pass);
-
+                //Assign main task to return to Main menu
 		Main.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new MainMenu();
 			frame.setTitle("Main Menu");
@@ -71,6 +74,7 @@ public class loginad extends JFrame {
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 		});
+                //Assign main task to ok button and go to book flight
 		ok.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new Customerbook();
 			frame.setTitle("Book Flight");
