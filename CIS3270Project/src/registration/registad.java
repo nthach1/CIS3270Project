@@ -40,13 +40,13 @@ public class registad extends JFrame{
         private final JComboBox question = new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
                 "What is your first car?","Where were your mother born?"});
         
-        public registad() {  
+        public registad() { 
+        //Create Panel for three buttons
         final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        
         function.add(save);
         function.add(cancel);
         function.add(Main);
-     
+        // Come back to main button
         Main.addActionListener((ActionEvent ev) -> {
             JFrame frame = new MainMenu();
             frame.setTitle("Main Menu");
@@ -54,7 +54,7 @@ public class registad extends JFrame{
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
-        
+        // JPanel for detail of information for register
         final JPanel detail = new JPanel(new GridLayout(13,2,0,0));
         detail.add(new JLabel("SSN"));
         detail.add(ssn);
@@ -84,10 +84,10 @@ public class registad extends JFrame{
         detail.add(new JLabel("Administration Key"));
         detail.add(adminKey);
        ((JPasswordField)adminKey).setEchoChar('*');
-       
+        // Assign save task
         Save saveinfor = new Save();
         save.addActionListener(saveinfor);
-        
+        // Add panel to Layout
         setLayout(new GridLayout(2,1,0,0));
         add(function);
         add(detail);
