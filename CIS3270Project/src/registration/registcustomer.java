@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import classes.Admin;
 import classes.Customer;
 import classes.MainMenu;
@@ -41,12 +39,12 @@ public class registcustomer extends JFrame{
                 "What is your first car?","Where were your mother born?"});
         
         public registcustomer() {  
+        //Create Panel for three buttons    
         final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        
         function.add(save);
         function.add(cancel);
         function.add(Main);
-     
+         // Come back to main button
         Main.addActionListener((ActionEvent ev) -> {
             JFrame frame = new MainMenu();
             frame.setTitle("Main Menu");
@@ -54,7 +52,7 @@ public class registcustomer extends JFrame{
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
-        
+        // JPanel for detail of information for register
         final JPanel detail = new JPanel(new GridLayout(13,2,0,0));
         detail.add(new JLabel("SSN"));
         detail.add(ssn);
@@ -83,10 +81,10 @@ public class registcustomer extends JFrame{
         detail.add(answer);
         detail.add(new JLabel("Administration Key"));
 
-       
+        // Assign save task
         Save saveinfor = new Save();
         save.addActionListener(saveinfor);
-        
+        // Add panel to Layout
         setLayout(new GridLayout(2,1,0,0));
         add(function);
         add(detail);
@@ -97,7 +95,6 @@ class Save implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
     	
-      
     	//create customer object and set fields to inputs
     	Customer newCustomer = new Customer();
     	newCustomer.setSsn(ssn.getText());
