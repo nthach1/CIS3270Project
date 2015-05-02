@@ -1,5 +1,4 @@
-package users;
-
+package registration;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,11 +6,24 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.*;
-import javax.swing.*;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import classes.Admin;
+import classes.Customer;
+import classes.MainMenu;
+
 
 public class registcustomer extends JFrame{
-        private final  JButton save = new JButton("Save");
+   private final  JButton save = new JButton("Save");
         private final JButton cancel = new JButton("Cancel");
         private final JButton Main= new JButton("Main");
         private final JTextField fname = new JTextField(30);
@@ -25,13 +37,16 @@ public class registcustomer extends JFrame{
         private final JTextField username = new JTextField(30);
         private final JPasswordField password = new JPasswordField(30);
         private final JTextField answer = new JTextField(30);
-      
+        private final JComboBox question = new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
+                "What is your first car?","Where were your mother born?"});
         
         public registcustomer() {  
-        final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));  
+        final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        
         function.add(save);
         function.add(cancel);
         function.add(Main);
+     
         Main.addActionListener((ActionEvent ev) -> {
             JFrame frame = new MainMenu();
             frame.setTitle("Main Menu");
@@ -55,7 +70,6 @@ public class registcustomer extends JFrame{
         detail.add(state);
         detail.add(new JLabel("Zip"));
         detail.add(zip);
-       
         detail.add(new JLabel("Username"));
         detail.add(username);
         detail.add(new JLabel("Password"));
@@ -63,46 +77,61 @@ public class registcustomer extends JFrame{
        ((JPasswordField)password).setEchoChar('*');
         detail.add(new JLabel("Email"));
         detail.add(email);
-        
         detail.add(new JLabel("Security Question"));
-        detail.add(new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
-                                       "What is your first car?","Where were your mother born?"}) );
+        detail.add(question);
         detail.add(new JLabel("Answer"));
         detail.add(answer);
-        
+        detail.add(new JLabel("Administration Key"));
+
+       
         Save saveinfor = new Save();
         save.addActionListener(saveinfor);
         
         setLayout(new GridLayout(2,1,0,0));
         add(function);
-        add(detail);   
- 
+        add(detail);
+        
     }  
 class Save implements ActionListener{
 
     @Override
-   public void actionPerformed(ActionEvent e) {
-   try{     
-   Class.forName("com.mysql.jdbc.Driver");
-    System.out.println("Driver loaded");
-    // Establish a connection
-    Connection connection = DriverManager.getConnection
-      ("jdbc:mysql://localhost/cis3270","root","8731120q");
-    System.out.println("Database connected");
-    // Create a statement
-    Statement statement = connection.createStatement();
-    // Execute a statement
-    statement.executeUpdate
-      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
-        + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
-        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getText()+"','"+email.getText()
-        +"','"+answer.getText()+"','0')");
-    connection.close();
-    
-   JOptionPane.showMessageDialog(null, "Your account is created successfully!!");
-   }
-    catch (ClassNotFoundException | SQLException ex){
-        }      
+    public void actionPerformed(ActionEvent e) {
+    	
+      
+    	//create customer object and set fields to inputs
+    	Customer newCustomer = new Customer();
+    	newCustomer.setSsn(ssn.getText());
+    	newCustomer.setFirstName(fname.getText());
+    	newCustomer.setLastName(lname.getText());
+    	newCustomer.setAddress(address.getText());
+    	newCustomer.setCity(city.getText());
+    	newCustomer.setState(state.getText());
+    	newCustomer.setZip(zip.getText());
+    	newCustomer.setUsername(username.getText());
+    	newCustomer.setPassword(password.getText());
+    	newCustomer.setEmail(email.getText());
+    	newCustomer.setSecurityQuestion(question.getSelectedItem().toString());
+    	newCustomer.setSecurityAnswer(answer.getText());
+    	
+    	// registers customer 
+    	RegisterSQL customer = new RegisterSQL();
+    	try {
+			customer.registerCustomer(newCustomer);
+			JOptionPane.showMessageDialog(null, "Registration Complete!");
+			JFrame frame = new MainMenu();
+            frame.setTitle("Main Menu");
+            frame.setSize(800, 600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("2");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Username already exists");
+		}
+    	
+ 
+        } 
     }
-}
 }

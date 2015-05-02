@@ -1,4 +1,4 @@
-package users;
+package registration;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,6 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import classes.Admin;
+import classes.MainMenu;
 
 
 public class registad extends JFrame{
@@ -33,6 +37,8 @@ public class registad extends JFrame{
         private final JPasswordField password = new JPasswordField(30);
         private final JTextField answer = new JTextField(30);
         private final JPasswordField adminKey = new JPasswordField(30);
+        private final JComboBox question = new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
+                "What is your first car?","Where were your mother born?"});
         
         public registad() {  
         final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -72,8 +78,7 @@ public class registad extends JFrame{
         detail.add(new JLabel("Email"));
         detail.add(email);
         detail.add(new JLabel("Security Question"));
-        detail.add(new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
-                                       "What is your first car?","Where were your mother born?"}) );
+        detail.add(question);
         detail.add(new JLabel("Answer"));
         detail.add(answer);
         detail.add(new JLabel("Administration Key"));
@@ -92,30 +97,42 @@ class Save implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
     if(adminKey.getText().equals("1234")) {   
-    try{     
-    Class.forName("com.mysql.jdbc.Driver");
-    System.out.println("Driver loaded");
-    // Establish a connection
-    Connection connection = DriverManager.getConnection
-      ("jdbc:mysql://localhost/cis3270","root","8731120q");
-    System.out.println("Database connected");
-    // Create a statement
-    Statement statement = connection.createStatement();
-    // Execute a statement
-    statement.executeUpdate
-      ("insert into customer(SSN,FirstName, LastName,Address, City,State,Zip,Username,Password,Email,Answer,Admin)"
-        + " values('"+ ssn.getText() +"','"+fname.getText()+"','"+lname.getText()+"','"+address.getText()+"','"+city.getText()
-        +"','"+state.getText()+"','"+zip.getText()+"','"+username.getText()+"','"+password.getText()+"','"+email.getText()
-        +"','"+answer.getText()+"','1')");
-    connection.close();
-      JOptionPane.showMessageDialog(null, "Your account is created successfully!!");
-   }
-    catch (ClassNotFoundException | SQLException ex){
-            }      
-        }  
-    
-    else {JOptionPane.showMessageDialog(null, "Wrong Administration code, try again please");}
-        }
+    	//create admin object and set fields to inputs
+    	Admin newAdmin = new Admin();
+    	newAdmin.setSsn(ssn.getText());
+    	newAdmin.setFirstName(fname.getText());
+    	newAdmin.setLastName(lname.getText());
+    	newAdmin.setAddress(address.getText());
+    	newAdmin.setCity(city.getText());
+    	newAdmin.setState(state.getText());
+    	newAdmin.setZip(zip.getText());
+    	newAdmin.setUsername(username.getText());
+    	newAdmin.setPassword(password.getText());
+    	newAdmin.setEmail(email.getText());
+    	newAdmin.setSecurityQuestion(question.getSelectedItem().toString());
+    	newAdmin.setSecurityAnswer(answer.getText());
+    	
+    	// registers admin 
+    	RegisterSQL admin = new RegisterSQL();
+    	try {
+			admin.registerAdmin(newAdmin);
+			JOptionPane.showMessageDialog(null, "Registration Complete!");
+			JFrame frame = new MainMenu();
+            frame.setTitle("Main Menu");
+            frame.setSize(800, 600);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("2");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Username already exists");
+		}
+    	
+    } else {JOptionPane.showMessageDialog(null, "Wrong Administration code, try again please");}
+        } 
     }
 }

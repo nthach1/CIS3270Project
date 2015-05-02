@@ -1,28 +1,31 @@
-package users;
+package classes;
 
-public class Customer extends User{
+public class Customer extends User {
 
-private String firstName;
-	
+	private String firstName;
+
 	private String lastName;
-	
+
 	private String address;
-	
+
 	private String zip;
-	
+
 	private String state;
-	
+
 	private String email;
-	
+
 	private String ssn;
-	
+
 	private String securityQuestion;
-	
+
 	private String securityAnswer;
-	
-	//This secret key allows the program to distinguish between administration users and customers
+
+	private String city;
+
+	// This secret key allows the program to distinguish between administration
+	// users and customers
 	private int adminKey;
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -93,7 +96,22 @@ private String firstName;
 
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
-		
 	}
-	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public int getAdminKey() {
+		return adminKey;
+	}
+
+	public void setAdminKey(int adminKey) {
+		this.adminKey = adminKey;
+	}
+
 }
