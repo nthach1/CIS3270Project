@@ -41,7 +41,8 @@ public class logincustomer extends JFrame {
 	private final JComboBox squestion = new JComboBox(new String[]{"What is your father middle name?","What is your first pet?",
              "What is your first car?","Where were your mother born?"});
 
-	public logincustomer() {
+	public logincustomer() { // Create Jpanel for constructor
+                //Create JPanel for Login
 		final JPanel login = new JPanel(new GridLayout(13, 2, 0, 0));
 		login.add(new JLabel("Log in"));
 		login.add(new JLabel("Username"));
@@ -51,7 +52,7 @@ public class logincustomer extends JFrame {
 		((JPasswordField) password).setEchoChar('*');
 		login.add(ok);
 		login.add(cancel);
-
+                //Create Jpanel for retrieved password
 		final JPanel forgotpass = new JPanel(new GridLayout(13, 2, 0, 0));
 		forgotpass.add(Main);
 		forgotpass.add(new JLabel("Forgot Password?"));
@@ -62,12 +63,11 @@ public class logincustomer extends JFrame {
 		forgotpass.add(new JLabel("Answer"));
 		forgotpass.add(forgotpassword);
 		forgotpass.add(submit);
-		setLayout(new GridLayout(2, 1, 5, 5));
-		
+                //Create Layout to add two panels
+		setLayout(new GridLayout(2, 1, 5, 5));	
 		add(login);
 		add(forgotpass);
-
-
+                //Assign main task to return to Main menu
 		Main.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new MainMenu();
 			frame.setTitle("Main Menu");
@@ -75,7 +75,7 @@ public class logincustomer extends JFrame {
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 		});
-		
+		//Assign lister task to ok and submit
 		Login login1 = new Login();
 		ok.addActionListener(login1);
 		Password p1= new Password();
