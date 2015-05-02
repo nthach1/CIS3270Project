@@ -1,11 +1,11 @@
-package users;
+package classes;
 
 public abstract class User {
 
 	private String username;
-	
+
 	private String password;
-	
+
 	public String getUsername() {
 		return username;
 	}
