@@ -17,14 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import menus.MainMenu;
 import classes.Admin;
-import classes.MainMenu;
 
 
 public class registad extends JFrame{
-   private final  JButton save = new JButton("Save");
-        private final JButton cancel = new JButton("Cancel");
-        private final JButton Main= new JButton("Main");
+   private final  JButton save = new JButton("Register");
+        private final JButton Main= new JButton("Cancel");
         private final JTextField fname = new JTextField(30);
         private final JTextField lname = new JTextField(30);
         private final JTextField address = new JTextField(30);
@@ -44,7 +43,6 @@ public class registad extends JFrame{
         //Create Panel for three buttons
         final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         function.add(save);
-        function.add(cancel);
         function.add(Main);
         // Come back to main button
         Main.addActionListener((ActionEvent ev) -> {
@@ -53,6 +51,7 @@ public class registad extends JFrame{
             frame.setSize(800, 600);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+            dispose();
         });
         // JPanel for detail of information for register
         final JPanel detail = new JPanel(new GridLayout(13,2,0,0));
@@ -98,6 +97,17 @@ class Save implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
     	
+if(username.getText().trim().isEmpty() == true) {
+    		
+    		JOptionPane.showMessageDialog(null, "Please Enter a Username");
+    		
+    	
+    	} else if (password.getText().trim().isEmpty() == true) {
+    		
+    		JOptionPane.showMessageDialog(null, "Please Enter a Password");
+    
+    	}else {
+    	
     if(adminKey.getText().equals("1234")) {   
     	//create admin object and set fields to inputs
     	Admin newAdmin = new Admin();
@@ -124,6 +134,7 @@ class Save implements ActionListener{
             frame.setSize(800, 600);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+            dispose();
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			System.out.println("2");
@@ -134,5 +145,7 @@ class Save implements ActionListener{
     	
     } else {JOptionPane.showMessageDialog(null, "Wrong Administration code, try again please");}
         } 
+
+    }
     }
 }

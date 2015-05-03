@@ -1,5 +1,9 @@
 package classes;
 
+import java.sql.SQLException;
+
+import flights.FlightsSQL;
+
 public class Customer extends User {
 
 	private String firstName;
@@ -114,4 +118,18 @@ public class Customer extends User {
 		this.adminKey = adminKey;
 	}
 
+	public boolean book(String flightNumber) throws ClassNotFoundException, SQLException {
+	
+		boolean booked = false;
+		
+		FlightsSQL a = new FlightsSQL();
+		if ( a.checkBooked(this.getUsername(), flightNumber) == true){
+			booked = true;
+		
+		} else {
+			a.bookFlights(this.getUsername(), flightNumber);
+		}
+		
+		return booked;
+	}
 }

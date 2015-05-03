@@ -20,13 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import customerMenus.AdminMenu;
-import customerMenus.CustomerMenu;
+import menus.AdminMenu;
+import menus.CustomerMenu;
+import menus.MainMenu;
 import classes.Admin;
 import classes.Customer;
-import classes.Customerbook;
 import classes.CustomerFromSQL;
-import classes.MainMenu;
 
 
 public class logincustomer extends JFrame {
@@ -68,13 +67,16 @@ public class logincustomer extends JFrame {
 		add(login);
 		add(forgotpass);
                 //Assign main task to return to Main menu
+		
 		Main.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new MainMenu();
 			frame.setTitle("Main Menu");
 			frame.setSize(800, 600);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
+			dispose();
 		});
+		
 		//Assign lister task to ok and submit
 		Login login1 = new Login();
 		ok.addActionListener(login1);
@@ -106,9 +108,12 @@ public class logincustomer extends JFrame {
 						
 						AdminMenu login2 = new AdminMenu();
 						login2.AdminMenu(admin);
+						dispose();
 					} else {
 					CustomerMenu login2 = new CustomerMenu();
 					login2.CustomerMenu(customer);
+					dispose();
+					
 					}
 					
 				} else {
