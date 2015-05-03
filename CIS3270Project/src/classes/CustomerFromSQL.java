@@ -12,7 +12,7 @@ public class CustomerFromSQL {
 	
 	private PreparedStatement prep;
 
-	public Admin createCustomer(String a) throws ClassNotFoundException, SQLException{
+	public Customer createCustomer(String a) throws ClassNotFoundException, SQLException{
 		
 		Admin customer = new Admin();
 		// Load the JDBC driver

@@ -28,7 +28,7 @@ public class BookFlights extends JFrame{
 	private final JButton menuB = new JButton("Menu");
 	private  final JPanel matchingFlightsP = new JPanel(new BorderLayout());
 
-	public void bookFlights(Admin customer, String origin, String destination){
+	public void bookFlights(Customer customer, String origin, String destination, String departureDate){
 		
 		JFrame mframe = new JFrame();
 		mframe.setTitle("Book Flight");
@@ -53,7 +53,7 @@ public class BookFlights extends JFrame{
 		
 				try {
 		ResultSet rs = matchingFlights.showFlights
-				(origin,destination);
+				(origin,destination,departureDate);
 			matchedFlights.setModel(buildTableModel(rs));
 			matchingFlightsP.add(new JScrollPane(matchedFlights), BorderLayout.CENTER);
 			main.add(matchingFlightsP, BorderLayout.CENTER);
@@ -90,7 +90,7 @@ public class BookFlights extends JFrame{
 							f.updatePassengers(flight);
 							JOptionPane.showMessageDialog(null, "Flight Booked!");
 							AdminMenu menus = new AdminMenu();
-							menus.AdminMenu(customer);
+							menus.AdminMenu((Admin)customer);
 							mframe.dispose();
 								
 						} else {
@@ -122,7 +122,7 @@ public class BookFlights extends JFrame{
 					
 					if (customer.getAdminKey() == 1) {
 						AdminMenu a = new AdminMenu();
-						a.AdminMenu(customer);
+						a.AdminMenu((Admin)customer);
 						mframe.dispose();
 					} else {
 					CustomerMenu a = new CustomerMenu();

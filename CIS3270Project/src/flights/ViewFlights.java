@@ -32,7 +32,7 @@ public class ViewFlights extends JFrame{
 		private final JButton remove = new JButton("Remove Flight");
 		private final JButton view= new JButton("View Flight");
 		
-		public void viewFlights(Admin customer) throws ClassNotFoundException, SQLException{
+		public void viewFlights(Customer customer) throws ClassNotFoundException, SQLException{
 			
 			JFrame mframe = new JFrame();
 			mframe.setTitle("Flights");
@@ -61,7 +61,7 @@ public class ViewFlights extends JFrame{
 				
 				if (customer.getAdminKey() == 1) {
 					AdminMenu a = new AdminMenu();
-					a.AdminMenu(customer);
+					a.AdminMenu((Admin)customer);
 					mframe.dispose();
 				} else {
 				CustomerMenu a = new CustomerMenu();
@@ -141,9 +141,9 @@ public class ViewFlights extends JFrame{
 					flightInformation.add(new JLabel("Departure Time:"));
 					flightInformation.add(new JLabel(flight.getDepartureTime()));
 					flightInformation.add(new JLabel("Arrival Date:"));
-					flightInformation.add(new JLabel(flight.getArrivaleDate()));
+					flightInformation.add(new JLabel(flight.getArrivalDate()));
 					flightInformation.add(new JLabel("Arrival Time:"));
-					flightInformation.add(new JLabel(flight.getArrivaleTime()));
+					flightInformation.add(new JLabel(flight.getArrivalTime()));
 					flightInformation.add(new JLabel("Airlines:"));
 					flightInformation.add(new JLabel(flight.getAirlines()));
 					flightInformation.add(new JLabel("Passengers:"));

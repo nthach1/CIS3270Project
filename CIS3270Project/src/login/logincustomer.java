@@ -33,7 +33,7 @@ public class logincustomer extends JFrame {
 	private final JTextField getUsername = new JTextField(20);
 	private final JPasswordField password = new JPasswordField(30);
 	private final JButton ok = new JButton("OK");
-	private final JButton cancel = new JButton("Cancel");
+	
 	private final JButton Main = new JButton("Main");
 	private final JTextField forgotpassword = new JTextField(20);
 	private final JButton submit = new JButton("Submit");
@@ -50,7 +50,7 @@ public class logincustomer extends JFrame {
 		login.add(password);
 		((JPasswordField) password).setEchoChar('*');
 		login.add(ok);
-		login.add(cancel);
+		
                 //Create Jpanel for retrieved password
 		final JPanel forgotpass = new JPanel(new GridLayout(13, 2, 0, 0));
 		forgotpass.add(Main);
@@ -97,7 +97,7 @@ public class logincustomer extends JFrame {
 			
 			CustomerFromSQL a = new CustomerFromSQL();
 			try {
-				Admin customer = a.createCustomer(username1);
+				Customer customer = a.createCustomer(username1);
 				
 				if (password1.compareTo(customer.getPassword()) == 0) { 
 					JOptionPane.showMessageDialog(null, "Login Successful");

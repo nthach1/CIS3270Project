@@ -79,7 +79,7 @@ public class FlightsSQL {
 	
 	}
 	
-public  ResultSet showFlights(String origin, String destination) throws ClassNotFoundException, SQLException{
+public  ResultSet showFlights(String origin, String destination, String departureDate) throws ClassNotFoundException, SQLException{
 		
 		ArrayList<Object> flightCities = new ArrayList<Object>();
 		
@@ -107,9 +107,11 @@ public  ResultSet showFlights(String origin, String destination) throws ClassNot
 		  */
 	    // Execute a statement
 	    
-	   prep = connection.prepareStatement("SELECT * FROM flight where origin = ? AND destination = ?");
+	   prep = connection.prepareStatement("SELECT * FROM flight where origin = ? AND destination = ? AND departure_date = ?");
 	   prep.setString(1, origin);
 	   prep.setString(2, destination);
+	   prep.setString(3, departureDate);
+
 	  ResultSet matchingFlights = prep.executeQuery();
 	  
 	//close connection
@@ -293,8 +295,8 @@ public  Flight buildFlight(String flightnumber) throws ClassNotFoundException, S
 	   flight.setDestination(flightInfo.getString(3));
 	   flight.setDepartureDate(flightInfo.getString(4));
 	   flight.setDepartureTime(flightInfo.getString(5));
-	   flight.setArrivaleDate(flightInfo.getString(6));
-	   flight.setArrivaleTime(flightInfo.getString(7));
+	   flight.setArrivalDate(flightInfo.getString(6));
+	   flight.setArrivalTime(flightInfo.getString(7));
 	   flight.setAirlines(flightInfo.getString(8));
 	   flight.setPassengers(Integer.parseInt(flightInfo.getString(9)));
    

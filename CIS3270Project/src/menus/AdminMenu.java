@@ -34,11 +34,13 @@ import flights.ViewFlights;
 		private final JButton logOut = new JButton("Log Out");
 		private final JButton menuB = new JButton("Menu");
 		private final JButton searchB = new JButton("Search For Flights");
+		private final JButton editFlightsB = new JButton("Edit Flights");
 		private final JLabel welcome = new JLabel();
 		private final JComboBox origin = new JComboBox();
 		private final JComboBox destination = new JComboBox();
-		final JPanel searchFlightsP = new JPanel();
-		private final JButton editFlightsB = new JButton("Edit Flights");
+		private  JComboBox departureMonth = new JComboBox();
+		private  JComboBox departureDay = new JComboBox();
+		private final JPanel searchFlightsP = new JPanel(new GridLayout(6,2));
 		
 
 		public void AdminMenu(Admin admin) {
@@ -61,7 +63,38 @@ import flights.ViewFlights;
 			main.add(welcome, BorderLayout.NORTH);
 			main.add(menu, BorderLayout.CENTER);
 			
-			final JPanel searchFlightsP = new JPanel();
+			searchFlightsP.add(new JLabel("Origin"));
+			searchFlightsP.add(origin);
+			searchFlightsP.add(new JLabel("Destination"));
+			searchFlightsP.add(destination);
+			searchFlightsP.add(new JLabel("Departure Month"));
+			searchFlightsP.add(departureMonth);
+			searchFlightsP.add(new JLabel("Departure Day"));
+			searchFlightsP.add(departureDay);
+			searchFlightsP.add(searchB);
+			searchFlightsP.add(menuB);
+	
+			
+			String[] months = new String[] {"January", "February", "March", "April",
+					"May", "June", "July", "August", "September", "October", "November", "December"};
+			
+			for (int i = 0; i < months.length; i ++) {
+				departureMonth.addItem(months[i]);
+				
+			}
+			
+			int[] days = new int[31];
+			int count = 1;
+			for (int i = 0; i < 31; i ++) {
+				days[i] = count;
+				count++;
+			}
+			
+			for (int i = 0; i < days.length; i ++) {
+				departureDay.addItem(days[i]);
+				
+			}
+			
 			
 			try {
 				FlightsSQL flightsSQL = new FlightsSQL();
@@ -92,10 +125,6 @@ import flights.ViewFlights;
 			mframe.add(main);
 	
 			searchFlightsB.addActionListener((ActionEvent ev) -> {
-				searchFlightsP.add(origin);
-				searchFlightsP.add(destination);
-				searchFlightsP.add(searchB);
-				searchFlightsP.add(menuB);
 				main.setVisible(false);
 				mframe.add(searchFlightsP);
 				searchFlightsP.setVisible(true);
@@ -111,8 +140,9 @@ import flights.ViewFlights;
 			
 				searchB.addActionListener((ActionEvent ev) -> {
 				
+				String departureDate = departureMonth.getSelectedItem() + " " + departureDay.getSelectedItem();
 				BookFlights book = new BookFlights();
-				book.bookFlights(admin, origin.getSelectedItem().toString(), destination.getSelectedItem().toString());
+				book.bookFlights(admin, origin.getSelectedItem().toString(), destination.getSelectedItem().toString(), departureDate);
 				mframe.dispose();
 			});
 				
@@ -127,6 +157,15 @@ import flights.ViewFlights;
 					}
 					mframe.dispose();
 				});
+				
+				editFlightsB.addActionListener((ActionEvent ev) -> {
+					
+					EditFlightMenu edit = new EditFlightMenu();
+					edit.EditFlightMenu(admin);
+					mframe.dispose();
+					
+				});
+				
 				
 				logOut.addActionListener((ActionEvent ev) -> {
 					

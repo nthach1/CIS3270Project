@@ -2,24 +2,13 @@ package classes;
 
 public abstract class User {
 
-	private String username;
+	public String username;
 
-	private String password;
+	public String password;
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	public abstract  String getUsername();
+	public abstract void setUsername(String username);
+	public abstract String getPassword();
+	public abstract void setPassword(String password) ;
 
 }

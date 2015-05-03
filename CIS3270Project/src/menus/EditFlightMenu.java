@@ -9,13 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import classes.Admin;
+
 	public class EditFlightMenu extends JFrame {
 		private final JButton searchFlightsC = new JButton("Search Flights");
 		private final JTextField acceptFlight = new JTextField("Enter Flight Number Here");
 		private final JButton menuB = new JButton("Menu");
 		
 		//Create admin frame
-		public EditFlightMenu() {
+		public  void EditFlightMenu(Admin admin) {
 			JFrame mframe = new JFrame();
 			mframe.setTitle("Administrator Edit Flight");
 			mframe.setSize(800, 600);
@@ -29,7 +31,7 @@ import javax.swing.JTextField;
 			menu.add(menuB);
 			menu.setVisible(true);
 			
-			add(menu);
+			mframe.add(menu);
 			
 			
 		}
