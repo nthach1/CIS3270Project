@@ -6,9 +6,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import classes.EditFlight;
 import classes.Admin;
 import classes.Flight;
 import menus.MainMenu;
@@ -16,12 +18,12 @@ import menus.AdminMenu;
 
 
 	public class CreateFlight extends JFrame {
-		private final JTextField createOrigin = new JTextField("Enter Flight Origin Here");
-		private final JTextField createDestination = new JTextField("Enter Flight Destination Here");
-		private final JTextField createDepartureDate = new JTextField("Enter Flight Departure Date Here");
-		private final JTextField createArrivalDate = new JTextField("Enter Flight Arrival Date Here");
-		private final JTextField createArrivalTime = new JTextField("Enter Flight Arrival Time Here");
-		private final JTextField createAirlines = new JTextField("Enter Flight Airlines Name Here");
+		private final JTextField createOrigin = new JTextField();
+		private final JTextField createDestination = new JTextField();
+		private final JTextField createDepartureDate = new JTextField();
+		private final JTextField createArrivalDate = new JTextField();
+		private final JTextField createArrivalTime = new JTextField();
+		private final JTextField createAirlines = new JTextField();
 		private final JLabel origin = new JLabel ("Flight Origin");
 		private final JLabel destination = new JLabel ("Flight Destination");
 		private final JLabel departureDate = new JLabel ("Flight Departure Date");
@@ -57,10 +59,11 @@ import menus.AdminMenu;
 		createF.add(createFlight);
 		createF.add(cancel);
 
-		add(createF);
+		mframe.add(createF);
 		
 		//Add create flight button action - save flight info
 		createFlight.addActionListener((ActionEvent ev) -> {
+			
 			Flight newFlight = new Flight();
 			newFlight.setOrigin(createOrigin.getText());
 			newFlight.setDestination(createDestination.getText());
@@ -69,6 +72,9 @@ import menus.AdminMenu;
 			newFlight.setArrivalTime(createArrivalTime.getText());
 			newFlight.setAirlines(createAirlines.getText());
 			
+		
+				
+				JOptionPane.showMessageDialog(null, "Flight Created");
 			
 		
 		});
@@ -76,14 +82,13 @@ import menus.AdminMenu;
 		//Create cancel button action - cancel and go back to main menu
 		cancel.addActionListener((ActionEvent ev) -> {
 			
-			 AdminMenu frame = new AdminMenu();
-	            frame.setTitle("Administrator Menu");
-	            frame.setSize(800, 600);
-	            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            frame.setVisible(true);
-	            mframe.dispose();
+				AdminMenu a = new AdminMenu();
+				a.AdminMenu(admin);
+				mframe.dispose();
 			
-		});
+			});
+			
+	
 	}
 
 	

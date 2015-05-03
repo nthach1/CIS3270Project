@@ -53,6 +53,15 @@ import flights.CreateFlight;
 			
 			mframe.add(menu);
 			
+			menuB.addActionListener((ActionEvent ev) -> {
+				
+				
+				AdminMenu a = new AdminMenu();
+				a.AdminMenu(admin);
+				mframe.dispose();
+			
+			});
+			
 			
 		}
 

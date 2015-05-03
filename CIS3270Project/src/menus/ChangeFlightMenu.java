@@ -31,8 +31,19 @@ import classes.Admin;
 					menu.add(menuB);
 					menu.setVisible(true);
 				
-					add(menu);
+					mframe.add(menu);
+					
+					menuB.addActionListener((ActionEvent ev) -> {
+						
+						
+						AdminMenu a = new AdminMenu();
+						a.AdminMenu(admin);
+						mframe.dispose();
+					
+					});
 					
 				}
+				
+				
 				
 }
