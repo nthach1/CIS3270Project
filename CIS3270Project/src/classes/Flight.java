@@ -14,9 +14,9 @@ public class Flight {
 	
 	private String departureTime;
 	
-	private String arrivaleDate;
+	private String arrivalDate;
 	
-	private String arrivaleTime;
+	private String arrivalTime;
 
 	private String airlines;
 	
@@ -62,20 +62,20 @@ public class Flight {
 		this.departureTime = departureTime;
 	}
 
-	public String getArrivaleDate() {
-		return arrivaleDate;
+	public String getArrivalDate() {
+		return arrivalDate;
 	}
 
-	public void setArrivaleDate(String arrivaleDate) {
-		this.arrivaleDate = arrivaleDate;
+	public void setArrivalDate(String arrivaleDate) {
+		this.arrivalDate = arrivaleDate;
 	}
 
-	public String getArrivaleTime() {
-		return arrivaleTime;
+	public String getArrivalTime() {
+		return arrivalTime;
 	}
 
-	public void setArrivaleTime(String arrivaleTime) {
-		this.arrivaleTime = arrivaleTime;
+	public void setArrivalTime(String arrivaleTime) {
+		this.arrivalTime = arrivaleTime;
 	}
 
 	public String getAirlines() {
