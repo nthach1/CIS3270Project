@@ -16,7 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import menus.AdminMenu;
 import menus.CustomerMenu;
+import classes.Admin;
 import classes.Customer;
 import classes.Flight;
 
@@ -26,7 +28,7 @@ public class BookFlights extends JFrame{
 	private final JButton menuB = new JButton("Menu");
 	private  final JPanel matchingFlightsP = new JPanel(new BorderLayout());
 
-	public void bookFlights(Customer customer, String origin, String destination){
+	public void bookFlights(Admin customer, String origin, String destination){
 		
 		JFrame mframe = new JFrame();
 		mframe.setTitle("Book Flight");
@@ -79,6 +81,19 @@ public class BookFlights extends JFrame{
 					}
 					
 					else {
+						
+						if (customer.getAdminKey() == 1) {
+							customer.book(flightNumber);
+							passengers++;
+							flight.setPassengers(passengers);
+							FlightsSQL f = new FlightsSQL();
+							f.updatePassengers(flight);
+							JOptionPane.showMessageDialog(null, "Flight Booked!");
+							AdminMenu menus = new AdminMenu();
+							menus.AdminMenu(customer);
+							mframe.dispose();
+								
+						} else {
 					customer.book(flightNumber);
 					passengers++;
 					flight.setPassengers(passengers);
@@ -88,6 +103,7 @@ public class BookFlights extends JFrame{
 					CustomerMenu menus = new CustomerMenu();
 					menus.CustomerMenu(customer);
 					mframe.dispose();
+						}
 						}
 					}
 				} catch (Exception e) {
@@ -102,11 +118,18 @@ public class BookFlights extends JFrame{
 			e.printStackTrace();
 		}
 		
-		menuB.addActionListener((ActionEvent ev) -> {
-		CustomerMenu a = new CustomerMenu();
-		a.CustomerMenu(customer);
-		mframe.dispose();
-		});
+				menuB.addActionListener((ActionEvent ev) -> {
+					
+					if (customer.getAdminKey() == 1) {
+						AdminMenu a = new AdminMenu();
+						a.AdminMenu(customer);
+						mframe.dispose();
+					} else {
+					CustomerMenu a = new CustomerMenu();
+					a.CustomerMenu(customer);
+					mframe.dispose();
+					}
+					});
 		
 		
 	}

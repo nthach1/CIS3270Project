@@ -97,7 +97,7 @@ public class logincustomer extends JFrame {
 			
 			CustomerFromSQL a = new CustomerFromSQL();
 			try {
-				Customer customer = a.createCustomer(username1);
+				Admin customer = a.createCustomer(username1);
 				
 				if (password1.compareTo(customer.getPassword()) == 0) { 
 					JOptionPane.showMessageDialog(null, "Login Successful");

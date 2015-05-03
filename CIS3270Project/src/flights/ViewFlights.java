@@ -19,7 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import menus.AdminMenu;
 import menus.CustomerMenu;
+import classes.Admin;
 import classes.Customer;
 import classes.Flight;
 
@@ -30,7 +32,7 @@ public class ViewFlights extends JFrame{
 		private final JButton remove = new JButton("Remove Flight");
 		private final JButton view= new JButton("View Flight");
 		
-		public void viewFlights(Customer customer) throws ClassNotFoundException, SQLException{
+		public void viewFlights(Admin customer) throws ClassNotFoundException, SQLException{
 			
 			JFrame mframe = new JFrame();
 			mframe.setTitle("Flights");
@@ -56,9 +58,16 @@ public class ViewFlights extends JFrame{
 			mframe.add(main);
 			
 			menuB.addActionListener((ActionEvent ev) -> {
+				
+				if (customer.getAdminKey() == 1) {
+					AdminMenu a = new AdminMenu();
+					a.AdminMenu(customer);
+					mframe.dispose();
+				} else {
 				CustomerMenu a = new CustomerMenu();
 				a.CustomerMenu(customer);
 				mframe.dispose();
+				}
 				});
 			
 			remove.addActionListener((ActionEvent ev) -> {

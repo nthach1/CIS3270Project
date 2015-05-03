@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import classes.Admin;
 import classes.Customer;
 import flights.BookFlights;
 import flights.FlightsSQL;
@@ -31,7 +32,7 @@ import flights.ViewFlights;
 		final JPanel searchFlightsP = new JPanel();
 		
 
-		public void CustomerMenu(Customer customer) {
+		public void CustomerMenu(Admin customer) {
 			
 			JFrame mframe = new JFrame();
 			mframe.setTitle("Customer Menu");

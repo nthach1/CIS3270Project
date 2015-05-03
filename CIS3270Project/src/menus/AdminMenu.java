@@ -23,7 +23,9 @@ import registration.registad;
 import registration.registcustomer;
 import classes.Admin;
 import classes.Customer;
+import flights.BookFlights;
 import flights.FlightsSQL;
+import flights.ViewFlights;
 
 	public class AdminMenu extends JFrame{
 		private final JButton searchFlightsB = new JButton("Search Flights");
@@ -39,7 +41,7 @@ import flights.FlightsSQL;
 		private final JButton editFlightsB = new JButton("Edit Flights");
 		
 
-		public void AdminMenu(Admin a) {
+		public void AdminMenu(Admin admin) {
 			
 			JFrame mframe = new JFrame();
 			mframe.setTitle("Administrator Menu");
@@ -84,16 +86,58 @@ import flights.FlightsSQL;
 		
 			
 			
-			welcome.setText("Welcome " + a.getFirstName() + " " + a.getLastName());
+			welcome.setText("Welcome " + admin.getFirstName() + " " + admin.getLastName());
 
 			
 			mframe.add(main);
 	
 			searchFlightsB.addActionListener((ActionEvent ev) -> {
+				searchFlightsP.add(origin);
+				searchFlightsP.add(destination);
+				searchFlightsP.add(searchB);
+				searchFlightsP.add(menuB);
 				main.setVisible(false);
+				mframe.add(searchFlightsP);
 				searchFlightsP.setVisible(true);
 				
 			});
+			
+			menuB.addActionListener((ActionEvent ev) -> {
+				main.setVisible(true);
+				searchFlightsP.setVisible(false);
+				
+				
+			});
+			
+				searchB.addActionListener((ActionEvent ev) -> {
+				
+				BookFlights book = new BookFlights();
+				book.bookFlights(admin, origin.getSelectedItem().toString(), destination.getSelectedItem().toString());
+				mframe.dispose();
+			});
+				
+				viewFlights.addActionListener((ActionEvent ev) -> {
+					
+					ViewFlights viewFlights = new ViewFlights();
+					try {
+						viewFlights.viewFlights(admin);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					mframe.dispose();
+				});
+				
+				logOut.addActionListener((ActionEvent ev) -> {
+					
+					 JFrame frame = new MainMenu();
+			            frame.setTitle("Main Menu");
+			            frame.setSize(800, 600);
+			            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			            frame.setVisible(true);
+			            mframe.dispose();
+					
+				});
 			
 		}
 		

@@ -12,9 +12,9 @@ public class CustomerFromSQL {
 	
 	private PreparedStatement prep;
 
-	public Customer createCustomer(String a) throws ClassNotFoundException, SQLException{
+	public Admin createCustomer(String a) throws ClassNotFoundException, SQLException{
 		
-		Customer customer = new Customer();
+		Admin customer = new Admin();
 		// Load the JDBC driver
 	    Class.forName("com.mysql.jdbc.Driver");
 	   
