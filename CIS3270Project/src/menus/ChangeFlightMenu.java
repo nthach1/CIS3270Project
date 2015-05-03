@@ -1,12 +1,15 @@
 package menus;
 
 	import java.awt.BorderLayout;
-	import java.awt.GridLayout;
-	import java.awt.event.ActionEvent;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JPanel;
-	import javax.swing.JTextField;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import classes.Admin;
 
 			public class ChangeFlightMenu extends JFrame {
 				private final JButton searchFlightsC = new JButton("Search Flights");
@@ -14,7 +17,7 @@ package menus;
 				private final JButton menuB = new JButton("Menu");
 			
 				//Create admin change flight menu frame
-				public  ChangeFlightMenu() {
+				public void ChangeFlightMenu(Admin admin) {
 					JFrame mframe = new JFrame();
 					mframe.setTitle("Administrator Edit Flight");
 					mframe.setSize(800, 600);

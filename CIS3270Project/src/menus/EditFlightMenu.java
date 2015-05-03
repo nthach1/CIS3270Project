@@ -26,6 +26,7 @@ import flights.CreateFlight;
 			mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mframe.setVisible(true);
 			
+			//Create create flight button action - take user to the create flight window
 			createFlight.addActionListener((ActionEvent ev) -> {
 				
 				CreateFlight newFlight = new CreateFlight();
@@ -33,10 +34,13 @@ import flights.CreateFlight;
 				mframe.dispose();
 				
 			});
-			
+			 
+			//Create edit flight button action - take user to the edit flight window
 			editFlight.addActionListener((ActionEvent ev) -> {
 				
 				ChangeFlightMenu editFlight = new ChangeFlightMenu();
+				editFlight.ChangeFlightMenu(admin);
+				mframe.dispose();
 				
 			});
 			
