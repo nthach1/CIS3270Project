@@ -118,7 +118,7 @@ public class Customer extends User {
 		this.adminKey = adminKey;
 	}
 
-	public boolean book(String flightNumber) throws ClassNotFoundException, SQLException {
+	public boolean isBooked(String flightNumber) throws ClassNotFoundException, SQLException {
 	
 		boolean booked = false;
 		
@@ -126,10 +126,20 @@ public class Customer extends User {
 		if ( a.checkBooked(this.getUsername(), flightNumber) == true){
 			booked = true;
 		
-		} else {
-			a.bookFlights(this.getUsername(), flightNumber);
-		}
-		
+		} 
 		return booked;
+		
+		
+	}
+	
+	public void book(String flightNumber) throws ClassNotFoundException, SQLException {
+		
+		
+		
+		FlightsSQL a = new FlightsSQL();
+		
+			a.bookFlights(this.getUsername(), flightNumber);
+		
+		
 	}
 }

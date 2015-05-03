@@ -70,7 +70,8 @@ public class BookFlights extends JFrame{
 					FlightsSQL flightInfo = new FlightsSQL();
 					Flight flight = flightInfo.buildFlight(flightNumber);
 					int passengers = flight.getPassengers();
-					 if (customer.book(flightNumber) == true) {
+					
+					 if (customer.isBooked(flightNumber) == true) {
 						JOptionPane.showMessageDialog(null, "Flight is already booked");
 					}
 					 else if (passengers >= 50) {
@@ -78,6 +79,7 @@ public class BookFlights extends JFrame{
 					}
 					
 					else {
+					customer.book(flightNumber);
 					passengers++;
 					flight.setPassengers(passengers);
 					FlightsSQL f = new FlightsSQL();
