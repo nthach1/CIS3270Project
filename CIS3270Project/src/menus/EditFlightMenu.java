@@ -10,12 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import classes.Admin;
+import classes.EditFlight;
+import flights.CreateFlight;
 
 	public class EditFlightMenu extends JFrame {
-		private final JButton searchFlightsC = new JButton("Search Flights");
-		private final JTextField acceptFlight = new JTextField("Enter Flight Number Here");
 		private final JButton menuB = new JButton("Menu");
-		
+		private final JButton createFlight = new JButton("Create Flight");
+		private final JButton editFlight = new JButton("Edit Flight");
+
 		//Create admin frame
 		public  void EditFlightMenu(Admin admin) {
 			JFrame mframe = new JFrame();
@@ -24,10 +26,24 @@ import classes.Admin;
 			mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mframe.setVisible(true);
 			
+			createFlight.addActionListener((ActionEvent ev) -> {
+				
+				CreateFlight newFlight = new CreateFlight();
+				newFlight.CreateFlight(admin);
+				mframe.dispose();
+				
+			});
+			
+			editFlight.addActionListener((ActionEvent ev) -> {
+				
+				ChangeFlightMenu editFlight = new ChangeFlightMenu();
+				
+			});
+			
 			//Add admin edit menu items
 			final JPanel menu = new JPanel(new GridLayout(3,1));
-			menu.add(acceptFlight);
-			menu.add(searchFlightsC);
+			menu.add(createFlight);
+			menu.add(editFlight);
 			menu.add(menuB);
 			menu.setVisible(true);
 			

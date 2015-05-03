@@ -33,7 +33,7 @@ import menus.AdminMenu;
 		final JPanel createF = new JPanel();
 
 	//Create flight creation frame
-	public CreateFlight(Admin admin) {
+	public void CreateFlight(Admin admin) {
 		JFrame mframe = new JFrame();
 		mframe.setTitle("Administrative Flight Creation");
 		mframe.setSize(800, 600);
