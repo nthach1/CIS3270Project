@@ -30,7 +30,7 @@ import menus.AdminMenu;
 		private final JLabel airlines = new JLabel ("Flight Airline Name");
 		private final JButton createFlight = new JButton("Create Flight");
 		private final JButton cancel = new JButton("Cancel");
-		final JPanel submitCreation = new JPanel();
+		final JPanel createF = new JPanel();
 
 	//Create flight creation frame
 	public CreateFlight(Admin admin) {
