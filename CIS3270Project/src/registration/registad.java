@@ -1,4 +1,5 @@
 package registration;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -40,10 +41,12 @@ public class registad extends JFrame{
                 "What is your first car?","Where were your mother born?"});
         
         public registad() { 
-        //Create Panel for three buttons
-        final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
+        //Create Panel for twobuttons
+        final JPanel function = new JPanel(new GridLayout(1,2));
         function.add(save);
         function.add(Main);
+        
+        
         // Come back to main button
         Main.addActionListener((ActionEvent ev) -> {
             JFrame frame = new MainMenu();
@@ -83,13 +86,13 @@ public class registad extends JFrame{
         detail.add(new JLabel("Administration Key"));
         detail.add(adminKey);
        ((JPasswordField)adminKey).setEchoChar('*');
-        // Assign save task
-        Save saveinfor = new Save();
-        save.addActionListener(saveinfor);
-        // Add panel to Layout
-        setLayout(new GridLayout(2,1,0,0));
-        add(function);
-        add(detail);
+        
+        
+       final JPanel p = new JPanel(new BorderLayout());
+       p.add(function, BorderLayout.SOUTH);
+       p.add(detail, BorderLayout.CENTER);
+       
+       add(p);
         
     }  
 class Save implements ActionListener{

@@ -1,4 +1,5 @@
 package registration;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,8 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import menus.MainMenu;
 
+import menus.MainMenu;
 import classes.Admin;
 import classes.Customer;
 
@@ -41,9 +43,9 @@ public class registcustomer extends JFrame{
         
         public registcustomer() {  
         //Create Panel for three buttons    
-        final JPanel function = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        function.add(save);
-        function.add(Main);
+        	final JPanel function = new JPanel(new GridLayout(1,2));
+            function.add(save);
+            function.add(Main);
          // Come back to main button
         
         Main.addActionListener((ActionEvent ev) -> {
@@ -83,14 +85,11 @@ public class registcustomer extends JFrame{
         detail.add(new JLabel("Answer"));
         detail.add(answer);
        
-
-        // Assign save task
-        Save saveinfor = new Save();
-        save.addActionListener(saveinfor);
-        // Add panel to Layout
-        setLayout(new GridLayout(2,1,0,0));
-        add(function);
-        add(detail);
+        final JPanel p = new JPanel(new BorderLayout());
+        p.add(function, BorderLayout.SOUTH);
+        p.add(detail, BorderLayout.CENTER);
+        
+        add(p);
         
     }  
 class Save implements ActionListener{

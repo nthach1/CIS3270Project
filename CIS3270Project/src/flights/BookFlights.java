@@ -82,11 +82,16 @@ public class BookFlights extends JFrame{
 					// checks to see if already booked
 					 if (customer.isBooked(flightNumber) == true) {
 						JOptionPane.showMessageDialog(null, "Flight is already booked");
+					
 					}
 					 
 					 //checks to see if full
 					 else if (passengers >= 50) {
 						JOptionPane.showMessageDialog(null, "Flight is full");
+						
+					} // checks to see if date conflicts
+					 else if (flightInfo.conflictFlights(customer.getUsername(), flightNumber) == true){
+						JOptionPane.showMessageDialog(null, "Date Conflict");
 					}
 					
 					else {
@@ -101,6 +106,7 @@ public class BookFlights extends JFrame{
 							AdminMenu menus = new AdminMenu();
 							menus.AdminMenu((Admin)customer);
 							mframe.dispose();
+							
 								
 						} else {
 					customer.book(flightNumber);
@@ -112,12 +118,14 @@ public class BookFlights extends JFrame{
 					CustomerMenu menus = new CustomerMenu();
 					menus.CustomerMenu(customer);
 					mframe.dispose();
+				
 							}
 						}
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Error Booking Flight");
+					e.printStackTrace();
 					}
 				
 				});

@@ -152,6 +152,7 @@ import flights.ViewFlights;
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Unable to Load Flights");
+	
 				}
 				mframe.dispose();
 			});

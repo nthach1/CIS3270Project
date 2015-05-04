@@ -1,6 +1,8 @@
 package menus;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -23,9 +25,18 @@ public class MainMenu extends JFrame {
 
 	// creates main menu
 	public MainMenu() {
-		final JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 2, 2));
-		panel.add(login);
-		panel.add(register);
+		final JPanel panel = new JPanel(new BorderLayout());
+		final JPanel p2 = new JPanel(new GridLayout(1,2));
+		p2.add(login);
+		p2.add(register);
+		panel.add(p2, BorderLayout.SOUTH);
+		try {
+			panel.add(new JLabel(new ImageIcon(new
+					  URL("http://dingo.care2.com/pictures/greenliving/1256/1255494.large.jpg"))), BorderLayout.CENTER);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		add(panel);
 		panel.setVisible(true);
 
@@ -34,6 +45,7 @@ public class MainMenu extends JFrame {
 		log.add(logcustomer);
 		log.add(Main1);
 		log.setVisible(false);
+		
 
 		
 		// registration panel

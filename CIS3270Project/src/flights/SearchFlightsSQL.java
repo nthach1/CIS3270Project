@@ -150,7 +150,7 @@ public void bookFlights(String username, String flightNumber ) throws ClassNotFo
 	  */
     // Execute a statement
     
-   prep = connection.prepareStatement("INSERT INTO ticket VALUES (default, ?, ?, default)");
+   prep = connection.prepareStatement("INSERT INTO ticket VALUES (default, ?, ?)");
    prep.setString(1, username);
    prep.setString(2, flightNumber);
    prep.executeUpdate();
@@ -184,7 +184,7 @@ public ResultSet viewFlights(Customer customer ) throws ClassNotFoundException, 
 	  */
     // Execute a statement
     
-   prep = connection.prepareStatement("SELECT ticket_number, flight_number, seat_number FROM ticket WHERE username = ?");
+   prep = connection.prepareStatement("SELECT ticket_number, flight_number FROM ticket WHERE username = ?");
    prep.setString(1, customer.getUsername());
    ResultSet rs =prep.executeQuery();
  
@@ -364,6 +364,68 @@ public  void updatePassengers(Flight flight) throws ClassNotFoundException, SQLE
    connection.close();
    
    
+	}
+
+//method to check if there is a conflict of dates
+public boolean conflictFlights(String username, String flightNumber ) throws ClassNotFoundException, SQLException{
+	
+	// Load the JDBC driver
+    Class.forName("com.mysql.jdbc.Driver");
+   
+    // Establish a connection
+    Connection connection = DriverManager.getConnection
+      ("jdbc:mysql://localhost/cis3270?"
+          + "user=sqluser&password=sqluserpw");
+    
+    //Create a statement
+    Statement statement = connection.createStatement();
+
+    /*flight table column indexes
+     ticket_number 1
+     username 2
+     flight_number 3
+     seat_number 4
+     
+	  */
+    // Execute a statement
+    
+    ArrayList<String> list = new ArrayList<String> ();
+    
+   prep = connection.prepareStatement("SELECT departure_date FROM flight WHERE flight_number = ?");
+   prep.setString(1, flightNumber);
+   ResultSet departureDate = prep.executeQuery();
+   
+   prep = connection.prepareStatement("SELECT flight_number FROM ticket WHERE username = ?");
+   prep.setString(1, username);
+   ResultSet userFlights = prep.executeQuery();
+   
+   
+   
+   while(userFlights.next()) {
+   
+   prep = connection.prepareStatement("SELECT departure_date FROM flight WHERE flight_number = ?");
+   prep.setString(1, userFlights.getString(1));
+   ResultSet departureDates = prep.executeQuery();
+   departureDates.next();
+   list.add(departureDates.getString(1));
+   }
+   
+   boolean conflict = false;
+   
+   departureDate.next();
+    for (int i = 0; i < list.size(); i ++) {
+    	if (departureDate.getString(1).compareTo(list.get(i)) == 0) {
+    		conflict = true;
+    		break;
+    	}
+    }
+   
+   
+
+   //close connection
+   connection.close();
+   return conflict;
+
 	}
 
 }
