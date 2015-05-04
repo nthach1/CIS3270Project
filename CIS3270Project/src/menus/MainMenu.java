@@ -119,7 +119,7 @@ public class MainMenu extends JFrame {
 		  
 		  Thread.sleep(6000); } catch (InterruptedException |
 				  MalformedURLException e) { } window.setVisible(false);
-		 
+		// Main Menu 
 		JFrame mframe = new MainMenu();
 		mframe.setTitle("Main Menu");
 		mframe.setSize(800, 600);
