@@ -81,8 +81,11 @@ import flights.SearchFlightsSQL;
 					main.setVisible(true);
 					mframe.add(main);
 					
+					
+					//updates flight
 					update.addActionListener((ActionEvent ev) -> {
 						
+						//create flight object
 						Flight updatedFlight = new Flight();
 						updatedFlight.setFlightNumber(flightNumber);
 						updatedFlight.setOrigin(originL.getText());
@@ -95,11 +98,12 @@ import flights.SearchFlightsSQL;
 		
 						
 						try {
+							
+							//admin updates flight
 							admin.editFlight(updatedFlight);
 							JOptionPane.showMessageDialog(null, "Flight Updated");
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Error Updating Flight");
 						}
 						EditFlightMenu edit = new EditFlightMenu();
 						edit.EditFlightMenu(admin);
@@ -107,8 +111,11 @@ import flights.SearchFlightsSQL;
 					
 					});
 					
+					//delete flight
 					delete.addActionListener((ActionEvent ev) -> {
 						
+						
+						//create flight object
 						Flight deleteFlight = new Flight();
 						deleteFlight.setFlightNumber(flightNumber);
 						deleteFlight.setOrigin(originL.getText());
@@ -122,6 +129,8 @@ import flights.SearchFlightsSQL;
 		
 						
 						try {
+							
+							//check to see if flight has passengers
 							if (deleteFlight.getPassengers() > 0) {
 								JOptionPane.showMessageDialog(null, "Cannot Delete Flight with Passengers");
 							} else {
@@ -130,7 +139,7 @@ import flights.SearchFlightsSQL;
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Error deleting flight");
 						}
 						EditFlightMenu edit = new EditFlightMenu();
 						edit.EditFlightMenu(admin);
@@ -138,7 +147,7 @@ import flights.SearchFlightsSQL;
 					
 					});	
 					
-					
+					//returns to menu
 					menuB.addActionListener((ActionEvent ev) -> {
 						AdminMenu a = new AdminMenu();
 						a.AdminMenu(admin);

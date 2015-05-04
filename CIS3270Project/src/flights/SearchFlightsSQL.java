@@ -18,8 +18,11 @@ public class SearchFlightsSQL {
 	
 	PreparedStatement prep;
 	
+	//method that creates an Array List of flight cities. Index 0 holds arraylist of origins. Index 1 holds arraylist of destiantions
+	
 	public  ArrayList<Object> getFlightCities() throws ClassNotFoundException, SQLException{
 		
+		//arraylist of cities
 		ArrayList<Object> flightCities = new ArrayList<Object>();
 		
 		// Load the JDBC driver
@@ -70,18 +73,20 @@ public class SearchFlightsSQL {
 	    //close connection
 	   connection.close();
 	   
+	   //adds origins array and destination arra to arraylist
 	   flightCities.add(originList);
 	   flightCities.add(destinationList);
 	   
-	   //return resultSet
+	   //return arraylist of cities
 	  return flightCities;
 	    
 	
 	}
 	
+	
+	//method to pull flights that match the origin, destination, and departure date from flight table
 public  ResultSet showFlights(String origin, String destination, String departureDate) throws ClassNotFoundException, SQLException{
 		
-		ArrayList<Object> flightCities = new ArrayList<Object>();
 		
 		// Load the JDBC driver
 	    Class.forName("com.mysql.jdbc.Driver");
@@ -114,14 +119,14 @@ public  ResultSet showFlights(String origin, String destination, String departur
 
 	  ResultSet matchingFlights = prep.executeQuery();
 	  
-	//close connection
-	
-	   
+
 	   //return resultSet
 	  return matchingFlights;
 	    
 	
 	}
+
+//method to book flight by insterting username and flightnumbe into ticket table
 
 public void bookFlights(String username, String flightNumber ) throws ClassNotFoundException, SQLException{
 	
@@ -152,8 +157,11 @@ public void bookFlights(String username, String flightNumber ) throws ClassNotFo
   
 
    //close connection
+   connection.close();
 
 	}
+
+//method to pull ticket information for specific customer
 
 public ResultSet viewFlights(Customer customer ) throws ClassNotFoundException, SQLException{
 	
@@ -184,6 +192,8 @@ public ResultSet viewFlights(Customer customer ) throws ClassNotFoundException, 
    return rs;
 	}
 
+
+// method to remove a flight from a customer
 public void removeFlights(String ticketnumber ) throws ClassNotFoundException, SQLException{
 	
 	// Load the JDBC driver
@@ -212,9 +222,11 @@ public void removeFlights(String ticketnumber ) throws ClassNotFoundException, S
   
 
    //close connection
+   connection.close();
 
 	}
 
+//method to check if customer has already book a specific flight
 public boolean checkBooked(String username, String flightnumber) throws SQLException, ClassNotFoundException{
 	
 	boolean isBooked = false;
@@ -254,8 +266,12 @@ public boolean checkBooked(String username, String flightnumber) throws SQLExcep
    
    
    //close connection
+   connection.close();
+   
    return isBooked;
 	}
+
+//method to build a Flight object
 
 public  Flight buildFlight(String flightnumber) throws ClassNotFoundException, SQLException{
 	
@@ -289,6 +305,8 @@ public  Flight buildFlight(String flightnumber) throws ClassNotFoundException, S
    prep.setString(1, flightnumber);
    ResultSet flightInfo = prep.executeQuery();
    
+   
+   //build Flight object
    flightInfo.next();
 	   flight.setFlightNumber(flightInfo.getString(1));
 	   flight.setOrigin(flightInfo.getString(2));
@@ -310,6 +328,8 @@ public  Flight buildFlight(String flightnumber) throws ClassNotFoundException, S
 
 	}
 
+
+//method to update the amount of passenfers in a flight
 public  void updatePassengers(Flight flight) throws ClassNotFoundException, SQLException{
 	
 	// Load the JDBC driver

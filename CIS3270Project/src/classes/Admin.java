@@ -10,6 +10,7 @@ public class Admin extends Customer implements EditFlight {
 
 
 
+	// method to delete a specific flight
 	@Override
 	public void deleteFlight(Flight flight) throws ClassNotFoundException, SQLException {
 
@@ -17,6 +18,7 @@ public class Admin extends Customer implements EditFlight {
 		newFlight.deleteFlight(flight);
 	}
 
+	// method to create a flight
 	@Override
 	public void createFlight(Flight flight) throws ClassNotFoundException, SQLException {
 		
@@ -24,6 +26,8 @@ public class Admin extends Customer implements EditFlight {
 		newFlight.createFlight(flight);
 		
 	}
+	
+	//method to edit a flight
 
 	@Override
 	public void editFlight(Flight flight) throws ClassNotFoundException, SQLException {

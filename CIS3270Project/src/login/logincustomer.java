@@ -95,15 +95,24 @@ public class logincustomer extends JFrame {
 			username1 = username.getText();
 			password1 = password.getText();
 			
+			
+			
 			CustomerFromSQL a = new CustomerFromSQL();
 			try {
+				
+				//build customer object from database
 				Customer customer = a.createCustomer(username1);
 				
+				
+				// checks to see if username and password match
 				if (password1.compareTo(customer.getPassword()) == 0) { 
 					JOptionPane.showMessageDialog(null, "Login Successful");
 
+					// check to see if admin
 					if (customer.getAdminKey() == 1) {
 						
+						
+						//create admin 
 						Admin admin = a.createAdmin(username1);
 						
 						AdminMenu login2 = new AdminMenu();
@@ -118,7 +127,7 @@ public class logincustomer extends JFrame {
 					
 				} else {
 					JOptionPane.showMessageDialog(null, "Login Failed");
-				}
+					}
 					
 				}
 		
@@ -132,7 +141,7 @@ public class logincustomer extends JFrame {
 			
 		}
 	
-	
+	// get password from security question
 
 	private class Password implements ActionListener {
 
@@ -151,10 +160,14 @@ public class logincustomer extends JFrame {
 			
 				Customer customer;
 				try {
+					
+					//checks to see if security answer and secuirity question match
 					customer = a.createCustomer(username);
 					if (customer.getSecurityQuestion().compareTo(question) == 0 && customer.getSecurityAnswer().compareToIgnoreCase(answer) ==0) {
 						JOptionPane.showMessageDialog(null, "Password is: " + customer.getPassword());
 					} else {
+						
+						//no match
 						JOptionPane.showMessageDialog(null, "Answer and Username do not match");
 					}
 				} catch (ClassNotFoundException | SQLException e1) {

@@ -21,6 +21,7 @@ public class MainMenu extends JFrame {
 	private final JButton regcustomer = new JButton("Customer");
 	private final JButton regad = new JButton("Administrator");
 
+	// creates main menu
 	public MainMenu() {
 		final JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 2, 2));
 		panel.add(login);
@@ -28,18 +29,22 @@ public class MainMenu extends JFrame {
 		add(panel);
 		panel.setVisible(true);
 
+		//log in panel
 		final JPanel log = new JPanel(new FlowLayout(FlowLayout.CENTER, 2, 2));
 		log.add(logcustomer);
 		log.add(Main1);
 		log.setVisible(false);
 
+		
+		// registration panel
 		final JPanel regist = new JPanel(
-				new FlowLayout(FlowLayout.CENTER, 2, 2));
+		new FlowLayout(FlowLayout.CENTER, 2, 2));
 		regist.add(regcustomer);
 		regist.add(regad);
 		regist.add(Main2);
 		regist.setVisible(false);
 
+		
 		Main1.addActionListener((ActionEvent ev) -> {
 			panel.setVisible(true);
 			log.setVisible(false);
@@ -51,6 +56,8 @@ public class MainMenu extends JFrame {
 			regist.setVisible(false);
 		});
 
+		
+		//creates log in frame
 		login.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new logincustomer();
 			frame.setTitle("Account Login");
@@ -65,6 +72,8 @@ public class MainMenu extends JFrame {
 			log.setVisible(false);
 			regist.setVisible(true);
 		});
+		
+		// creates regular customer registration frame
 		regcustomer.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new registcustomer();
 			frame.setTitle("Customer Account Registration");
@@ -74,6 +83,7 @@ public class MainMenu extends JFrame {
 			dispose();
 		});
 
+		// creates administration registration frame
 		regad.addActionListener((ActionEvent ev) -> {
 			JFrame frame = new registad();
 			frame.setTitle("Administrator Account Registration");
@@ -88,14 +98,15 @@ public class MainMenu extends JFrame {
 	public static void main(String[] agrs) {
 
 		
-//		  JWindow window = new JWindow(); try{ window.getContentPane().add( new
-//		  JLabel("", new ImageIcon(new
-//		  URL("http://cdn.makeagif.com/media/4-25-2015/LyuNvb.gif")),
-//		  SwingConstants.CENTER)); window.setBounds(400, 150, 630, 290);
-//		  window.setVisible(true);
-//		  
-//		  Thread.sleep(6000); } catch (InterruptedException |
-//		  MalformedURLException e) { } window.setVisible(false);
+		// splash screen
+		 JWindow window = new JWindow(); try{ window.getContentPane().add( new
+		  JLabel("", new ImageIcon(new
+		  URL("http://cdn.makeagif.com/media/4-25-2015/LyuNvb.gif")),
+		  SwingConstants.CENTER)); window.setBounds(400, 150, 630, 290);
+		  window.setVisible(true);
+		  
+		  Thread.sleep(6000); } catch (InterruptedException |
+				  MalformedURLException e) { } window.setVisible(false);
 		 
 		JFrame mframe = new MainMenu();
 		mframe.setTitle("Main Menu");

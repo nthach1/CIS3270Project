@@ -14,6 +14,8 @@ public class EditFlightsSQL {
 	
 PreparedStatement prep;
 	
+
+// method that accepts a flight object and inserts information into flight table
 	public  void createFlight(Flight flight) throws ClassNotFoundException, SQLException{
 		
 		// Load the JDBC driver
@@ -54,6 +56,8 @@ PreparedStatement prep;
 	   
 	}
 	
+	
+	// method that accepts a flight object and updates the specific flight in flight table	
 public  void updateFlight(Flight flight) throws ClassNotFoundException, SQLException{
 		
 		
@@ -98,6 +102,8 @@ public  void updateFlight(Flight flight) throws ClassNotFoundException, SQLExcep
 	   
 	}
 
+
+// method that accpets flight object and deletes that flight from table
 public  void deleteFlight(Flight flight) throws ClassNotFoundException, SQLException{
 	
 	

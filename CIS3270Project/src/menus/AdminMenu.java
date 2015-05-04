@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -42,7 +43,7 @@ import flights.ViewFlights;
 		private  JComboBox departureDay = new JComboBox();
 		private final JPanel searchFlightsP = new JPanel(new GridLayout(6,2));
 		
-
+		// creates admin menu
 		public void AdminMenu(Admin admin) {
 			
 			JFrame mframe = new JFrame();
@@ -63,6 +64,9 @@ import flights.ViewFlights;
 			main.add(welcome, BorderLayout.NORTH);
 			main.add(menu, BorderLayout.CENTER);
 			
+			
+			//search flights panel
+		
 			searchFlightsP.add(new JLabel("Origin"));
 			searchFlightsP.add(origin);
 			searchFlightsP.add(new JLabel("Destination"));
@@ -74,7 +78,7 @@ import flights.ViewFlights;
 			searchFlightsP.add(searchB);
 			searchFlightsP.add(menuB);
 	
-			
+			//creates jcombo box with month and day
 			String[] months = new String[] {"January", "February", "March", "April",
 					"May", "June", "July", "August", "September", "October", "November", "December"};
 			
@@ -96,6 +100,7 @@ import flights.ViewFlights;
 			}
 			
 			
+			// populate jcombo box with origin and destinations
 			try {
 				SearchFlightsSQL flightsSQL = new SearchFlightsSQL();
 				ArrayList<Object> flightCities = flightsSQL.getFlightCities();
@@ -109,21 +114,24 @@ import flights.ViewFlights;
 					destination.addItem(destinationCities.get(i));
 					}
 				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error loading search menu");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Error loading search menu");
 			}
 		
 			
-			
+			//shows first and last name in frame
 			welcome.setText("Welcome " + admin.getFirstName() + " " + admin.getLastName());
 
 			
 			mframe.add(main);
 	
+			
+			//search flights  button
 			searchFlightsB.addActionListener((ActionEvent ev) -> {
 				main.setVisible(false);
 				mframe.add(searchFlightsP);
@@ -131,6 +139,7 @@ import flights.ViewFlights;
 				
 			});
 			
+			//return to menu
 			menuB.addActionListener((ActionEvent ev) -> {
 				main.setVisible(true);
 				searchFlightsP.setVisible(false);
@@ -138,8 +147,11 @@ import flights.ViewFlights;
 				
 			});
 			
+			//button to search for flights based on departure date , origin, and destination 
 				searchB.addActionListener((ActionEvent ev) -> {
 				
+					
+					//get selected items in combo box
 				String departureDate = departureMonth.getSelectedItem() + " " + departureDay.getSelectedItem();
 				BookFlights book = new BookFlights();
 				book.bookFlights(admin, origin.getSelectedItem().toString(), destination.getSelectedItem().toString(), departureDate);
@@ -153,11 +165,12 @@ import flights.ViewFlights;
 						viewFlights.viewFlights(admin);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Unable to Load Flights");
 					}
 					mframe.dispose();
 				});
 				
+				//edit flight menu
 				editFlightsB.addActionListener((ActionEvent ev) -> {
 					
 					EditFlightMenu edit = new EditFlightMenu();
@@ -166,7 +179,7 @@ import flights.ViewFlights;
 					
 				});
 				
-				
+				//returns to login page
 				logOut.addActionListener((ActionEvent ev) -> {
 					
 					 JFrame frame = new MainMenu();
@@ -178,6 +191,8 @@ import flights.ViewFlights;
 					
 				});
 				
+				
+				// creates frame with account information
 				viewAccount.addActionListener((ActionEvent ev) -> {
 					
 					JFrame view = new JFrame();
@@ -189,7 +204,7 @@ import flights.ViewFlights;
 					JPanel panel = new JPanel(new BorderLayout());
 					 JButton close = new JButton("Close");
 	
-			
+			//displays account information
 			
 						JPanel flightInformation = new JPanel(new GridLayout(9,2));
 						flightInformation.add(new JLabel("Username:"));
@@ -216,7 +231,7 @@ import flights.ViewFlights;
 						panel.add(close, BorderLayout.SOUTH);
 						view.add(panel);
 					
-
+						//close acccount frame
 						close.addActionListener((ActionEvent ) -> {
 							view.dispose();
 						

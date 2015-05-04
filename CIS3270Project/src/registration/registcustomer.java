@@ -137,8 +137,7 @@ class Save implements ActionListener{
             frame.setVisible(true);
             dispose();
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("2");
+			JOptionPane.showMessageDialog(null, "Error registering");
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Username already exists");

@@ -2,6 +2,8 @@ package classes;
 
 import java.sql.SQLException;
 
+//interface that allows the creation/ editing/ and deleting of a flight
+
 public interface EditFlight {
 
 	

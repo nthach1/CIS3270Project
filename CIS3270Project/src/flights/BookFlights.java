@@ -28,6 +28,8 @@ public class BookFlights extends JFrame{
 	private final JButton menuB = new JButton("Menu");
 	private  final JPanel matchingFlightsP = new JPanel(new BorderLayout());
 
+	//book flights frame
+	
 	public void bookFlights(Customer customer, String origin, String destination, String departureDate){
 		
 		JFrame mframe = new JFrame();
@@ -47,41 +49,48 @@ public class BookFlights extends JFrame{
 		
 		mframe.add(main);
 		
-		
 		SearchFlightsSQL matchingFlights = new SearchFlightsSQL();
+		
 		//load matching flights into Jtable
 		
 				try {
-		ResultSet rs = matchingFlights.showFlights
+				ResultSet rs = matchingFlights.showFlights
 				(origin,destination,departureDate);
+				//builds table model 
 			matchedFlights.setModel(buildTableModel(rs));
 			matchingFlightsP.add(new JScrollPane(matchedFlights), BorderLayout.CENTER);
 			main.add(matchingFlightsP, BorderLayout.CENTER);
 			
 			book.addActionListener((ActionEvent ev) -> {
 				
-		
+				// gets the index of the selected row
 				int row = matchedFlights.getSelectedRow();
 
 				try {
+					// no row selected
 					if (row == -1) {
 						JOptionPane.showMessageDialog(null, "No flight selected. Try Again");
 					} else {
+						// get flightnumber at selected row and column 0
 					String flightNumber = matchedFlights.getModel().getValueAt(row, 0) + "";
 					
+					// build Flight object from flightNumber
 					SearchFlightsSQL flightInfo = new SearchFlightsSQL();
 					Flight flight = flightInfo.buildFlight(flightNumber);
 					int passengers = flight.getPassengers();
 					
+					// checks to see if already booked
 					 if (customer.isBooked(flightNumber) == true) {
 						JOptionPane.showMessageDialog(null, "Flight is already booked");
 					}
+					 
+					 //checks to see if full
 					 else if (passengers >= 50) {
 						JOptionPane.showMessageDialog(null, "Flight is full");
 					}
 					
 					else {
-						
+						// book flight and increase passsenger count
 						if (customer.getAdminKey() == 1) {
 							customer.book(flightNumber);
 							passengers++;
@@ -103,23 +112,23 @@ public class BookFlights extends JFrame{
 					CustomerMenu menus = new CustomerMenu();
 					menus.CustomerMenu(customer);
 					mframe.dispose();
-						}
+							}
 						}
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error Booking Flight");
 					}
 				
 				});
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error Loading Flights");
 		}
 		
+				// returns to menu
 				menuB.addActionListener((ActionEvent ev) -> {
-					
 					if (customer.getAdminKey() == 1) {
 						AdminMenu a = new AdminMenu();
 						a.AdminMenu((Admin)customer);
@@ -128,13 +137,14 @@ public class BookFlights extends JFrame{
 					CustomerMenu a = new CustomerMenu();
 					a.CustomerMenu(customer);
 					mframe.dispose();
-					}
+						}
 					});
 		
 		
 	}
 	
 	
+	// method for building Table Modedl using a ResultSet
 	public static DefaultTableModel buildTableModel(ResultSet rs)
 	        throws SQLException {
 
@@ -157,6 +167,7 @@ public class BookFlights extends JFrame{
 	        data.add(vector);
 	    }
 
+	    // return table model
 	    return new DefaultTableModel(data, columnNames);
 
 		}

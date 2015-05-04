@@ -56,6 +56,7 @@ import menus.AdminMenu;
 		createF.add(createDestination);
 		createF.add(departureDate);
 		
+		//select departure month and day
 		final JPanel departureDates = new JPanel(new GridLayout(1,2));
 		departureDates.add(departureMonth);
 		departureDates.add(departureDay);
@@ -66,6 +67,7 @@ import menus.AdminMenu;
 		createF.add(createDepartureTime);
 		createF.add(arrivalDate);
 		
+		//select arrival month and day
 		final JPanel arrivalDates = new JPanel(new GridLayout(1,2));
 		arrivalDates.add(arrivalMonth);
 		arrivalDates.add(arrivalDay);
@@ -80,15 +82,17 @@ import menus.AdminMenu;
 
 		mframe.add(createF);
 		
-		
+		// string to hold months
 		String[] months = new String[] {"January", "February", "March", "April",
 				"May", "June", "July", "August", "September", "October", "November", "December"};
 		
+		//populate jcombo box with the months
 		for (int i = 0; i < months.length; i ++) {
 			departureMonth.addItem(months[i]);
 			arrivalMonth.addItem(months[i]);
 		}
 		
+		// populate jcombo box with the days
 		int[] days = new int[31];
 		int count = 1;
 		for (int i = 0; i < 31; i ++) {
@@ -105,9 +109,11 @@ import menus.AdminMenu;
 		//Add create flight button action - save flight info
 		createFlight.addActionListener((ActionEvent ev) -> {
 			
+			// get selecte date and formats into "Month Day"
 			String departureDate = departureMonth.getSelectedItem() + " " + departureDay.getSelectedItem();
 			String arrivalDate = arrivalMonth.getSelectedItem() + " " + arrivalDay.getSelectedItem();
 			
+			//create flight Object
 			Flight newFlight = new Flight();
 			newFlight.setOrigin(createOrigin.getText());
 			newFlight.setDestination(createDestination.getText());
@@ -117,6 +123,8 @@ import menus.AdminMenu;
 			newFlight.setArrivalTime(createArrivalTime.getText());
 			newFlight.setAirlines(createAirlines.getText());
 			
+			
+			// admin creates flight by passing Flight object
 			try {
 				admin.createFlight(newFlight);
 				JOptionPane.showMessageDialog(null, "Flight Created");
@@ -125,7 +133,7 @@ import menus.AdminMenu;
 				mframe.dispose();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error Creating Flight");
 			}
 					
 		});
@@ -142,7 +150,7 @@ import menus.AdminMenu;
 			});
 			
 	
-	}
+		}
 
 	
 	}

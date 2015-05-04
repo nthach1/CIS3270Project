@@ -27,7 +27,7 @@ public class Customer extends User {
 	private String city;
 
 	// This secret key allows the program to distinguish between administration
-	// users and customers
+	// users and customers. 0 = customer, 1 = administrator
 	private int adminKey;
 
 	public String getFirstName() {
@@ -118,6 +118,8 @@ public class Customer extends User {
 		this.adminKey = adminKey;
 	}
 
+	
+	// method to check if the customer has booked the flight
 	public boolean isBooked(String flightNumber) throws ClassNotFoundException, SQLException {
 	
 		boolean booked = false;
@@ -132,8 +134,8 @@ public class Customer extends User {
 		
 	}
 	
+	//method to book flight
 	public void book(String flightNumber) throws ClassNotFoundException, SQLException {
-		
 		
 		
 		SearchFlightsSQL a = new SearchFlightsSQL();

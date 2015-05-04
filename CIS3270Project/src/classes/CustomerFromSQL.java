@@ -8,10 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 public class CustomerFromSQL {
 	
 	private PreparedStatement prep;
 
+	
+// method to build a Customer object from the database based on the username
 	public Customer createCustomer(String a) throws ClassNotFoundException, SQLException{
 		
 		Admin customer = new Admin();
@@ -50,10 +53,8 @@ public class CustomerFromSQL {
 	   ResultSet rs = prep.executeQuery();
 	   
 	   
-
+	   // creates a customer object
 	   rs.next();
-	  
-	   
 		  customer.setUsername(rs.getString(1));
 		  customer.setPassword(rs.getString(2));
 		  customer.setFirstName(rs.getString(3));
@@ -68,8 +69,6 @@ public class CustomerFromSQL {
 		  customer.setSecurityAnswer(rs.getString(12));
 		  customer.setAdminKey(Integer.parseInt(rs.getString(13)));
 	   
-
-	
 	    // Close the connection
 	    connection.close();
 	  
@@ -77,6 +76,8 @@ public class CustomerFromSQL {
 	    
 	}
 	
+	
+	// method to build administrator object
 public Admin createAdmin(String a) throws ClassNotFoundException, SQLException{
 		
 		Admin admin = new Admin();
@@ -115,10 +116,8 @@ public Admin createAdmin(String a) throws ClassNotFoundException, SQLException{
 	   ResultSet rs = prep.executeQuery();
 	   
 	   
-
+	   // builds adminstrator object
 	   rs.next();
-	  
-	   
 		  admin.setUsername(rs.getString(1));
 		  admin.setPassword(rs.getString(2));
 		  admin.setFirstName(rs.getString(3));

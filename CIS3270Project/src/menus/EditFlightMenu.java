@@ -39,13 +39,15 @@ import flights.CreateFlight;
 			//Create edit flight button action - take user to the edit flight window
 			editFlight.addActionListener((ActionEvent ev) -> {
 				
-				
+				// accepts flight number
 				String flightNumber = JOptionPane.showInputDialog("Enter flight number");
 				ChangeFlightMenu changeFlight = new ChangeFlightMenu();
 				try {
+					// load change flight menu
 					changeFlight.ChangeFlightMenu(admin, flightNumber);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					//incorrect flight number
+					
 					JOptionPane.showMessageDialog(null, "Incorrect Flight Number");
 					EditFlightMenu edit = new EditFlightMenu();
 					edit.EditFlightMenu(admin);

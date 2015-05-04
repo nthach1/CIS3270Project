@@ -16,7 +16,9 @@ public class RegisterSQL {
 	
 	private PreparedStatement prep;
 	
-	public void registerAdmin(Customer a) throws ClassNotFoundException, SQLException{
+	
+	//method to register Admin into user table
+	public void registerAdmin(Admin a) throws ClassNotFoundException, SQLException{
 		
 		// Load the JDBC driver
 	    Class.forName("com.mysql.jdbc.Driver");
@@ -68,6 +70,7 @@ public class RegisterSQL {
 	    
 	}
 	
+	//method to register Customer into user table
 	public void registerCustomer(Customer a) throws ClassNotFoundException, SQLException{
 		
 		// Load the JDBC driver
