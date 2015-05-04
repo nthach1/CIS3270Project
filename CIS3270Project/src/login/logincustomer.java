@@ -79,7 +79,6 @@ public class logincustomer extends JFrame {
 			forgotpass.add(submit);
 			forgotpass.add(close);
 		
-				
 			forgotP.add(forgotpass);
 			
 			close.addActionListener((ActionEvent ) -> {
