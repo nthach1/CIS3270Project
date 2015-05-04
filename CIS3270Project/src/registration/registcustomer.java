@@ -82,7 +82,7 @@ public class registcustomer extends JFrame{
         detail.add(question);
         detail.add(new JLabel("Answer"));
         detail.add(answer);
-        detail.add(new JLabel("Administration Key"));
+       
 
         // Assign save task
         Save saveinfor = new Save();

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -38,10 +39,19 @@ import flights.CreateFlight;
 			//Create edit flight button action - take user to the edit flight window
 			editFlight.addActionListener((ActionEvent ev) -> {
 				
-				ChangeFlightMenu editFlight = new ChangeFlightMenu();
-				editFlight.ChangeFlightMenu(admin);
-				mframe.dispose();
 				
+				String flightNumber = JOptionPane.showInputDialog("Enter flight number");
+				ChangeFlightMenu changeFlight = new ChangeFlightMenu();
+				try {
+					changeFlight.ChangeFlightMenu(admin, flightNumber);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Incorrect Flight Number");
+					EditFlightMenu edit = new EditFlightMenu();
+					edit.EditFlightMenu(admin);
+					mframe.dispose();
+				}
+				mframe.dispose();
 			});
 			
 			//Add admin edit menu items

@@ -2,16 +2,15 @@ package classes;
 
 import java.sql.SQLException;
 
-import flights.Flight;
-
 public interface EditFlight {
 
+	
 
-	void editFlight();
+	void createFlight(Flight flight) throws ClassNotFoundException, SQLException;
 
-	void deleteFlight();
+	void editFlight(Flight flight) throws ClassNotFoundException, SQLException;
 
-	void createFlight();
+	void deleteFlight(Flight flight) throws ClassNotFoundException, SQLException;
 
 	
 

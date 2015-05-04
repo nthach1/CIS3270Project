@@ -2,7 +2,7 @@ package classes;
 
 import java.sql.SQLException;
 
-import flights.FlightsSQL;
+import flights.SearchFlightsSQL;
 
 public class Customer extends User {
 
@@ -122,7 +122,7 @@ public class Customer extends User {
 	
 		boolean booked = false;
 		
-		FlightsSQL a = new FlightsSQL();
+		SearchFlightsSQL a = new SearchFlightsSQL();
 		if ( a.checkBooked(this.getUsername(), flightNumber) == true){
 			booked = true;
 		
@@ -136,7 +136,7 @@ public class Customer extends User {
 		
 		
 		
-		FlightsSQL a = new FlightsSQL();
+		SearchFlightsSQL a = new SearchFlightsSQL();
 		
 			a.bookFlights(this.getUsername(), flightNumber);
 		

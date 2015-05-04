@@ -14,7 +14,7 @@ import classes.Flight;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
-public class FlightsSQL {
+public class SearchFlightsSQL {
 	
 	PreparedStatement prep;
 	

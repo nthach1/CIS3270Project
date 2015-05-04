@@ -40,7 +40,7 @@ public class ViewFlights extends JFrame{
 			mframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mframe.setVisible(true);
 			
-			FlightsSQL flights = new FlightsSQL();
+			SearchFlightsSQL flights = new SearchFlightsSQL();
 			ResultSet rs = flights.viewFlights(customer);
 			
 			JPanel main = new JPanel(new BorderLayout());
@@ -71,7 +71,7 @@ public class ViewFlights extends JFrame{
 				});
 			
 			remove.addActionListener((ActionEvent ev) -> {
-				FlightsSQL remove = new FlightsSQL();
+				SearchFlightsSQL remove = new SearchFlightsSQL();
 				
 				int row =flightsView.getSelectedRow();
 				
@@ -83,13 +83,13 @@ public class ViewFlights extends JFrame{
 					String flightNumber = flightsView.getModel().getValueAt(row, 1) + "";
 					remove.removeFlights(ticketnumber);
 					
-					FlightsSQL flightInfo = new FlightsSQL();
+					SearchFlightsSQL flightInfo = new SearchFlightsSQL();
 					Flight flight = flightInfo.buildFlight(flightNumber);
 					int passengers = flight.getPassengers();
 					passengers--;
 					flight.setPassengers(passengers);
 					
-					FlightsSQL f = new FlightsSQL();
+					SearchFlightsSQL f = new SearchFlightsSQL();
 					f.updatePassengers(flight);
 					JOptionPane.showMessageDialog(null, "Flight Removed");
 					ViewFlights menu = new ViewFlights();
@@ -104,7 +104,7 @@ public class ViewFlights extends JFrame{
 			
 			view.addActionListener((ActionEvent ev) -> {
 				
-				FlightsSQL view = new FlightsSQL();
+				SearchFlightsSQL view = new SearchFlightsSQL();
 				
 				int row =flightsView.getSelectedRow();
 				
@@ -191,6 +191,10 @@ public class ViewFlights extends JFrame{
 		    return new DefaultTableModel(data, columnNames);
 
 			}
+		
 }
+
+			
+			
 
 

@@ -48,7 +48,7 @@ public class BookFlights extends JFrame{
 		mframe.add(main);
 		
 		
-		FlightsSQL matchingFlights = new FlightsSQL();
+		SearchFlightsSQL matchingFlights = new SearchFlightsSQL();
 		//load matching flights into Jtable
 		
 				try {
@@ -69,7 +69,7 @@ public class BookFlights extends JFrame{
 					} else {
 					String flightNumber = matchedFlights.getModel().getValueAt(row, 0) + "";
 					
-					FlightsSQL flightInfo = new FlightsSQL();
+					SearchFlightsSQL flightInfo = new SearchFlightsSQL();
 					Flight flight = flightInfo.buildFlight(flightNumber);
 					int passengers = flight.getPassengers();
 					
@@ -86,7 +86,7 @@ public class BookFlights extends JFrame{
 							customer.book(flightNumber);
 							passengers++;
 							flight.setPassengers(passengers);
-							FlightsSQL f = new FlightsSQL();
+							SearchFlightsSQL f = new SearchFlightsSQL();
 							f.updatePassengers(flight);
 							JOptionPane.showMessageDialog(null, "Flight Booked!");
 							AdminMenu menus = new AdminMenu();
@@ -97,7 +97,7 @@ public class BookFlights extends JFrame{
 					customer.book(flightNumber);
 					passengers++;
 					flight.setPassengers(passengers);
-					FlightsSQL f = new FlightsSQL();
+					SearchFlightsSQL f = new SearchFlightsSQL();
 					f.updatePassengers(flight);
 					JOptionPane.showMessageDialog(null, "Flight Booked!");
 					CustomerMenu menus = new CustomerMenu();

@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import classes.Admin;
 import classes.Customer;
 import flights.BookFlights;
-import flights.FlightsSQL;
+import flights.SearchFlightsSQL;
 import flights.ViewFlights;
 
 	public class CustomerMenu extends JFrame{
@@ -85,7 +85,7 @@ import flights.ViewFlights;
 			}
 			
 			try {
-				FlightsSQL flightsSQL = new FlightsSQL();
+				SearchFlightsSQL flightsSQL = new SearchFlightsSQL();
 				ArrayList<Object> flightCities = flightsSQL.getFlightCities();
 				ArrayList<Object> originCities = (ArrayList<Object>) flightCities.get(0);
 				ArrayList<Object> destinationCities = (ArrayList<Object>) flightCities.get(1);
@@ -154,6 +154,52 @@ import flights.ViewFlights;
 		            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            frame.setVisible(true);
 		            mframe.dispose();
+				
+			});
+			
+			viewAccount.addActionListener((ActionEvent ev) -> {
+				
+				JFrame view = new JFrame();
+				view.setTitle(customer.getUsername() );
+				view.setSize(300, 600);
+				view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				view.setVisible(true);
+				
+				JPanel panel = new JPanel(new BorderLayout());
+				 JButton close = new JButton("Close");
+
+		
+		
+					JPanel flightInformation = new JPanel(new GridLayout(9,2));
+					flightInformation.add(new JLabel("Username:"));
+					flightInformation.add(new JLabel(customer.getUsername()));
+					flightInformation.add(new JLabel("First Name:"));
+					flightInformation.add(new JLabel(customer.getFirstName()));
+					flightInformation.add(new JLabel("Last Name:"));
+					flightInformation.add(new JLabel(customer.getLastName()));
+					flightInformation.add(new JLabel("SSN:"));
+					flightInformation.add(new JLabel(customer.getSsn()));
+					flightInformation.add(new JLabel("Email:"));
+					flightInformation.add(new JLabel(customer.getEmail()));
+					flightInformation.add(new JLabel("Address:"));
+					flightInformation.add(new JLabel(customer.getAddress()));
+					flightInformation.add(new JLabel("City:"));
+					flightInformation.add(new JLabel(customer.getCity()));
+					flightInformation.add(new JLabel("State:"));
+					flightInformation.add(new JLabel(customer.getState()));
+					flightInformation.add(new JLabel("Zip Code"));
+					flightInformation.add(new JLabel(customer.getZip()));
+
+					
+					panel.add(flightInformation, BorderLayout.CENTER);
+					panel.add(close, BorderLayout.SOUTH);
+					view.add(panel);
+				
+
+					close.addActionListener((ActionEvent ) -> {
+						view.dispose();
+					
+				});
 				
 			});
 			

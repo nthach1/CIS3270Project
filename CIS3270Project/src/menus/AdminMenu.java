@@ -24,7 +24,7 @@ import registration.registcustomer;
 import classes.Admin;
 import classes.Customer;
 import flights.BookFlights;
-import flights.FlightsSQL;
+import flights.SearchFlightsSQL;
 import flights.ViewFlights;
 
 	public class AdminMenu extends JFrame{
@@ -34,7 +34,7 @@ import flights.ViewFlights;
 		private final JButton logOut = new JButton("Log Out");
 		private final JButton menuB = new JButton("Menu");
 		private final JButton searchB = new JButton("Search For Flights");
-		private final JButton editFlightsB = new JButton("Edit Flights");
+		private final JButton editFlightsB = new JButton("Create or Edit Flights");
 		private final JLabel welcome = new JLabel();
 		private final JComboBox origin = new JComboBox();
 		private final JComboBox destination = new JComboBox();
@@ -97,7 +97,7 @@ import flights.ViewFlights;
 			
 			
 			try {
-				FlightsSQL flightsSQL = new FlightsSQL();
+				SearchFlightsSQL flightsSQL = new SearchFlightsSQL();
 				ArrayList<Object> flightCities = flightsSQL.getFlightCities();
 				ArrayList<Object> originCities = (ArrayList<Object>) flightCities.get(0);
 				ArrayList<Object> destinationCities = (ArrayList<Object>) flightCities.get(1);
@@ -177,12 +177,56 @@ import flights.ViewFlights;
 			            mframe.dispose();
 					
 				});
-			
-		}
-		
-		
 				
+				viewAccount.addActionListener((ActionEvent ev) -> {
+					
+					JFrame view = new JFrame();
+					view.setTitle(admin.getUsername() );
+					view.setSize(300, 600);
+					view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					view.setVisible(true);
+					
+					JPanel panel = new JPanel(new BorderLayout());
+					 JButton close = new JButton("Close");
 	
+			
+			
+						JPanel flightInformation = new JPanel(new GridLayout(9,2));
+						flightInformation.add(new JLabel("Username:"));
+						flightInformation.add(new JLabel(admin.getUsername()));
+						flightInformation.add(new JLabel("First Name:"));
+						flightInformation.add(new JLabel(admin.getFirstName()));
+						flightInformation.add(new JLabel("Last Name:"));
+						flightInformation.add(new JLabel(admin.getLastName()));
+						flightInformation.add(new JLabel("SSN:"));
+						flightInformation.add(new JLabel(admin.getSsn()));
+						flightInformation.add(new JLabel("Email:"));
+						flightInformation.add(new JLabel(admin.getEmail()));
+						flightInformation.add(new JLabel("Address:"));
+						flightInformation.add(new JLabel(admin.getAddress()));
+						flightInformation.add(new JLabel("City:"));
+						flightInformation.add(new JLabel(admin.getCity()));
+						flightInformation.add(new JLabel("State:"));
+						flightInformation.add(new JLabel(admin.getState()));
+						flightInformation.add(new JLabel("Zip Code"));
+						flightInformation.add(new JLabel(admin.getZip()));
+
+						
+						panel.add(flightInformation, BorderLayout.CENTER);
+						panel.add(close, BorderLayout.SOUTH);
+						view.add(panel);
+					
+
+						close.addActionListener((ActionEvent ) -> {
+							view.dispose();
+						
+					});
+					
+				});
+				
+				
+				
+				}
 		
 	}
 		
