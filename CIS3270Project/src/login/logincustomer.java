@@ -1,5 +1,6 @@
 package login;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -32,8 +33,9 @@ public class logincustomer extends JFrame {
 	private final JTextField username = new JTextField(20);
 	private final JTextField getUsername = new JTextField(20);
 	private final JPasswordField password = new JPasswordField(30);
-	private final JButton ok = new JButton("OK");
-	
+	private final JButton forgotPassword = new JButton("Forgot Password");
+	private final JButton ok = new JButton("Log In");
+	private final JButton close = new JButton("Close");
 	private final JButton Main = new JButton("Main");
 	private final JTextField forgotpassword = new JTextField(20);
 	private final JButton submit = new JButton("Submit");
@@ -42,30 +44,53 @@ public class logincustomer extends JFrame {
 
 	public logincustomer() { // Create Jpanel for constructor
                 //Create JPanel for Login
-		final JPanel login = new JPanel(new GridLayout(13, 2, 0, 0));
-		login.add(new JLabel("Log in"));
-		login.add(new JLabel("Username"));
-		login.add(username);
-		login.add(new JLabel("Password"));
-		login.add(password);
+		final JPanel login = new JPanel(new BorderLayout());
+		final JPanel login2 = new JPanel(new GridLayout(8,1));
+		login2.add(new JLabel("Username"));
+		login2.add(username);
+		login2.add(new JLabel("Password"));
+		login2.add(password);
 		((JPasswordField) password).setEchoChar('*');
-		login.add(ok);
+		login2.add(ok);
+		login2.add(forgotPassword);
+		login2.add(Main);
 		
-                //Create Jpanel for retrieved password
-		final JPanel forgotpass = new JPanel(new GridLayout(13, 2, 0, 0));
-		forgotpass.add(Main);
-		forgotpass.add(new JLabel("Forgot Password?"));
-		forgotpass.add(new JLabel("Username"));
-		forgotpass.add(getUsername);
-		forgotpass.add(new JLabel("Security Question"));
-		forgotpass.add(squestion);
-		forgotpass.add(new JLabel("Answer"));
-		forgotpass.add(forgotpassword);
-		forgotpass.add(submit);
-                //Create Layout to add two panels
-		setLayout(new GridLayout(2, 1, 5, 5));	
+		login.add(login2, BorderLayout.CENTER);
 		add(login);
-		add(forgotpass);
+		
+        //Create Jpanel for retrieved password
+		
+		forgotPassword.addActionListener((ActionEvent ev) -> {
+			JFrame forgotP = new JFrame();
+			forgotP.setTitle("Forgot Passwrd");
+			forgotP.setSize(400, 400);
+			forgotP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			forgotP.setVisible(true);
+			
+			final JPanel forgotpass = new JPanel(new GridLayout(13, 2, 0, 0));
+			
+			forgotpass.add(new JLabel("Forgot Password?"));
+			forgotpass.add(new JLabel("Username"));
+			forgotpass.add(getUsername);
+			forgotpass.add(new JLabel("Security Question"));
+			forgotpass.add(squestion);
+			forgotpass.add(new JLabel("Answer"));
+			forgotpass.add(forgotpassword);
+			forgotpass.add(submit);
+			forgotpass.add(close);
+		
+				
+			forgotP.add(forgotpass);
+			
+			close.addActionListener((ActionEvent ) -> {
+				forgotP.dispose();
+			});
+		});
+	
+
+		
+	
+	
                 //Assign main task to return to Main menu
 		
 		Main.addActionListener((ActionEvent ev) -> {
@@ -165,6 +190,7 @@ public class logincustomer extends JFrame {
 					customer = a.createCustomer(username);
 					if (customer.getSecurityQuestion().compareTo(question) == 0 && customer.getSecurityAnswer().compareToIgnoreCase(answer) ==0) {
 						JOptionPane.showMessageDialog(null, "Password is: " + customer.getPassword());
+						
 					} else {
 						
 						//no match
